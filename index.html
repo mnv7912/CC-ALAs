@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GMIU ALA Submission Portal | BETCE17336 - Cloud Computing</title>
-  <!-- Load Tailwind CSS -->
+  <!-- Load Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Load Inter & JetBrains Mono Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -37,7 +37,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* Smooth transitions for view switching */
+    /* Smooth transitions when switching ALA views */
     .ala-view {
       animation: fadeIn 0.22s ease-out;
     }
@@ -53,7 +53,7 @@
       }
     }
 
-    /* Print Styles for Clean PDF Export */
+    /* Print Styles for Clean A4 PDF Export */
     @media print {
       @page {
         size: A4 portrait;
@@ -70,16 +70,8 @@
         display: none !important;
       }
 
-      .print-only {
-        display: block !important;
-      }
-
       .print-shadow-none {
         box-shadow: none !important;
-      }
-
-      .print-border-slate {
-        border-color: #cbd5e1 !important;
       }
 
       .print-container {
@@ -111,23 +103,23 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
 
   <!-- ===================================================================== -->
-  <!-- 1. PERSISTENT INSTITUTIONAL HEADER & STUDENT METADATA (PRINT-FRIENDLY) -->
+  <!-- 1. PERSISTENT INSTITUTIONAL HEADER & STUDENT METADATA                 -->
   <!-- ===================================================================== -->
   <header class="bg-white border-b border-slate-200 shadow-sm print-shadow-none">
     <!-- Top University Ribbon -->
     <div class="bg-navy-900 text-white py-2.5 px-4 sm:px-6 lg:px-8 border-b border-navy-850">
       <div class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div class="flex items-center gap-3">
-          <!-- Custom Academic Crest SVG -->
+          <!-- Academic Crest SVG -->
           <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0">
-            <svg class="w-5 h-5 text-indigo-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg class="w-5 h-5 text-indigo-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
             </svg>
           </div>
           <div>
             <p class="text-xs sm:text-sm font-bold tracking-wide uppercase text-white">
-              Gyanmanjari Innovative University (GMIU), Bhavnagar
+              GYANMANJARI INNOVATIVE UNIVERSITY (GMIU), BHAVNAGAR
             </p>
             <p class="text-[11px] sm:text-xs text-slate-300">
               Active Learning Activity (ALA) Digital Submission Portfolio
@@ -151,22 +143,18 @@
     <!-- Student & Course Verification Grid -->
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-        <!-- Student Name -->
         <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
           <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Student Name</div>
           <div class="text-sm font-bold text-slate-900 mt-0.5">Manav Bhadreshbhai Joshi</div>
         </div>
-        <!-- Enrollment Number -->
         <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
           <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Enrollment Number</div>
           <div class="text-sm font-mono font-bold text-indigo-700 mt-0.5">20230905090512</div>
         </div>
-        <!-- Subject Code -->
         <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
           <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Subject Code</div>
           <div class="text-sm font-mono font-bold text-slate-900 mt-0.5">BETCE17336</div>
         </div>
-        <!-- Subject Name -->
         <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
           <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Subject Name</div>
           <div class="text-sm font-bold text-slate-900 mt-0.5">Cloud Computing</div>
@@ -176,11 +164,10 @@
   </header>
 
   <!-- ===================================================================== -->
-  <!-- 2. PERSISTENT QUICK-NAV BAR (SHOWN WHEN INSIDE AN ALA, HIDDEN ON PRINT) -->
+  <!-- 2. STICKY QUICK-NAV BAR (ACTIVE ON ALA DETAIL VIEWS, HIDDEN ON PRINT) -->
   <!-- ===================================================================== -->
   <nav id="quick-nav-bar" class="hidden no-print sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3">
-      <!-- Back Button -->
       <button
         type="button"
         onclick="navigateTo('home')"
@@ -189,8 +176,8 @@
         <span>← Back to All ALAs</span>
       </button>
 
-      <!-- Quick ALA Switcher Pills -->
-      <div class="flex items-center gap-1.5 overflow-x-auto py-0.5" role="tablist" aria-label="Quick ALA Navigation">
+      <!-- Quick ALA Switcher Buttons -->
+      <div class="flex items-center gap-1.5 overflow-x-auto py-0.5" role="tablist" aria-label="Quick ALA Switcher">
         <button type="button" data-nav="ala1" onclick="navigateTo('ala1')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 1</button>
         <button type="button" data-nav="ala2" onclick="navigateTo('ala2')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 2</button>
         <button type="button" data-nav="ala3" onclick="navigateTo('ala3')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 3</button>
@@ -198,13 +185,12 @@
         <button type="button" data-nav="ala5" onclick="navigateTo('ala5')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 5</button>
       </div>
 
-      <!-- Print / Save as PDF Button -->
       <button
         type="button"
         onclick="window.print()"
         class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition cursor-pointer"
       >
-        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z" />
         </svg>
         <span>Print / Save as PDF</span>
@@ -213,15 +199,15 @@
   </nav>
 
   <!-- ===================================================================== -->
-  <!-- MAIN CONTENT CONTAINER                                                -->
+  <!-- MAIN CONTENT AREA                                                     -->
   <!-- ===================================================================== -->
   <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 print-container">
 
     <!-- =================================================================== -->
-    <!-- LANDING DASHBOARD (#home) — 5 DEDICATED ALA BUTTONS                 -->
+    <!-- HOME DASHBOARD (#home) — 5 DEDICATED ALA BUTTON CARDS               -->
     <!-- =================================================================== -->
     <section id="view-home" class="ala-view space-y-6">
-      <!-- Overview Banner -->
+      <!-- Overview Progress Card -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           <div class="max-w-3xl">
@@ -234,61 +220,61 @@
               Cloud Computing Active Learning Activities
             </h1>
             <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
-              Select any of the five dedicated Active Learning Activity (ALA) modules below to inspect architectural diagrams, comparative evaluations, source configurations, and analytical reports prepared for <strong class="text-slate-800">BETCE17336 – Cloud Computing</strong>.
+              Click any of the five dedicated Active Learning Activity (ALA) buttons below to inspect live cloud deployments, verified execution screenshots, architecture diagrams, and analytical reports for <strong class="text-slate-800">BETCE17336 – Cloud Computing</strong>.
             </p>
           </div>
           <div class="flex flex-wrap sm:flex-nowrap gap-3 shrink-0">
-            <div class="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 text-center min-w-[120px]">
-              <div class="text-2xl font-extrabold text-emerald-700">3 / 3</div>
-              <div class="text-xs font-semibold text-emerald-800 mt-0.5">Reports Complete</div>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 text-center min-w-[140px]">
+              <div class="text-2xl font-extrabold text-emerald-700">4 / 5</div>
+              <div class="text-xs font-semibold text-emerald-800 mt-0.5">Activities Completed</div>
             </div>
-            <div class="bg-sky-50 border border-sky-200 rounded-xl px-4 py-3 text-center min-w-[120px]">
-              <div class="text-2xl font-extrabold text-sky-700">2 / 2</div>
-              <div class="text-xs font-semibold text-sky-800 mt-0.5">Practicals Ready</div>
+            <div class="bg-sky-50 border border-sky-200 rounded-xl px-4 py-3 text-center min-w-[140px]">
+              <div class="text-2xl font-extrabold text-sky-700">1 / 5</div>
+              <div class="text-xs font-semibold text-sky-800 mt-0.5">Setup Ready (ALA 2)</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 5 Dedicated Interactive ALA Button Cards -->
+      <!-- 5 Dedicated Interactive ALA Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 
-        <!-- BUTTON CARD 1: ALA 1 -->
+        <!-- CARD 1: ALA 1 (COMPLETED PRACTICAL) -->
         <button
           type="button"
           onclick="navigateTo('ala1')"
-          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="group text-left bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-emerald-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
               <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
                 ALA : 01
               </span>
-              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">
-                <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                Practical Setup Ready
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Completed Practical
               </span>
             </div>
             <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
               Cloud Service Deployment
             </h2>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-              Full-stack Python web application deployment on Render (Compute) integrated with Supabase PostgreSQL &amp; Object Storage, environment secrets, and live cloud telemetry.
+              Live Python/Flask web service deployed on Render connected to a Managed PostgreSQL database, complete with live URL, source code, and 3 verified deployment screenshots.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Practical</span>
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Live Cloud App</span>
             <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
               Open ALA 1 →
             </span>
           </div>
         </button>
 
-        <!-- BUTTON CARD 2: ALA 2 -->
+        <!-- CARD 2: ALA 2 (SETUP READY) -->
         <button
           type="button"
           onclick="navigateTo('ala2')"
-          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="group text-left bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-sky-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
@@ -297,29 +283,29 @@
               </span>
               <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">
                 <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
-                Practical Setup Ready
+                Setup Ready
               </span>
             </div>
             <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
               Virtualization Implementation
             </h2>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-              Multi-container virtualization via Docker Compose running isolated Nginx, Python API, and Redis instances with strict CPU quotas, RAM caps, and bridge network isolation.
+              Multi-container Docker Compose lab orchestrating isolated Nginx, Python API, and Redis instances with strict CPU quotas, RAM limits, and internal network isolation.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Practical</span>
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Next Practical</span>
             <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
               Open ALA 2 →
             </span>
           </div>
         </button>
 
-        <!-- BUTTON CARD 3: ALA 3 -->
+        <!-- CARD 3: ALA 3 (COMPLETED REPORT) -->
         <button
           type="button"
           onclick="navigateTo('ala3')"
-          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="group text-left bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-emerald-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
@@ -335,7 +321,7 @@
               Cloud Security Analysis (Review Activity)
             </h2>
             <p class="text-sm text-slate-600 mt-2 leading-relaxed">
-              Comparative review of AWS, Azure, and GCP across IAM (RBAC/ABAC, STS), AES-256 envelope encryption, confidential computing, breach root-cause analysis, and Zero Trust controls.
+              Comparative review of AWS, Azure, and GCP across IAM (RBAC/ABAC, STS), AES-256-GCM envelope encryption, confidential computing, real-world breaches, and Zero Trust controls.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
@@ -346,11 +332,11 @@
           </div>
         </button>
 
-        <!-- BUTTON CARD 4: ALA 4 -->
+        <!-- CARD 4: ALA 4 (COMPLETED REPORT) -->
         <button
           type="button"
           onclick="navigateTo('ala4')"
-          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          class="group text-left bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-emerald-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
@@ -377,11 +363,11 @@
           </div>
         </button>
 
-        <!-- BUTTON CARD 5: ALA 5 -->
+        <!-- CARD 5: ALA 5 (COMPLETED REPORT) -->
         <button
           type="button"
           onclick="navigateTo('ala5')"
-          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 md:col-span-2 lg:col-span-1"
+          class="group text-left bg-white hover:bg-slate-50/80 border border-slate-200 hover:border-emerald-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 md:col-span-2 lg:col-span-1"
         >
           <div>
             <div class="flex items-center justify-between gap-2 mb-4">
@@ -412,482 +398,681 @@
     </section>
 
     <!-- =================================================================== -->
-    <!-- VIEW: ALA 1 — CLOUD SERVICE DEPLOYMENT (PRACTICAL TEMPLATE)         -->
+    <!-- VIEW: ALA 1 — CLOUD SERVICE DEPLOYMENT (COMPLETED PRACTICAL)        -->
     <!-- =================================================================== -->
     <article id="view-ala1" class="ala-view hidden space-y-6">
-      <!-- Report Title Banner -->
+      <!-- Title Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 01</span>
-          <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">Practical Setup Ready</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Completed Practical • Live Deployed
+          </span>
           <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
         </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-          Cloud Service Deployment: Full-Stack Web Application &amp; Managed Database Hosting
+          Cloud Service Deployment: Full-Stack Web Application &amp; Managed PostgreSQL Hosting
         </h1>
         <p class="text-sm sm:text-base text-slate-600 mt-2">
-          Demonstration of PaaS Compute Hosting, Managed Cloud PostgreSQL &amp; Object Storage Integration, Secret Management, and Live Internet Accessibility.
+          Live PaaS compute hosting on Render integrated with a managed PostgreSQL cloud database (<code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">gmiu-ala1-db</code>), automated GitHub CI/CD sync, and real-time runtime telemetry.
         </p>
       </div>
 
-      <!-- 1. Live Deployed Application URL Card -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none avoid-break">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100">
+      <!-- 1. Live Deployment Endpoints & Infrastructure Summary -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
           <div>
-            <h2 class="text-lg font-bold text-slate-900">1. Live Deployed Application Endpoint</h2>
-            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Public HTTPS endpoint hosted on Render Cloud Web Service</p>
+            <h2 class="text-lg font-bold text-slate-900">1. Live Cloud Deployment &amp; Resource Summary</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Public HTTPS endpoint and Infrastructure-as-Code Blueprint repository</p>
           </div>
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-semibold self-start sm:self-auto">
-            TLS 1.3 Enabled • Auto-Deploy via GitHub
+          <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-semibold self-start sm:self-auto">
+            TLS 1.3 • Blueprint Synced
           </span>
         </div>
 
-        <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div class="space-y-1 flex-1">
-            <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Production URL</div>
-            <a id="ala1-live-link" href="https://gmiu-cloud-ala1-manav.onrender.com" target="_blank" rel="noopener noreferrer" class="text-sm sm:text-base font-mono font-semibold text-indigo-600 hover:underline break-all">
-              https://gmiu-cloud-ala1-manav.onrender.com
-            </a>
-            <div class="text-xs text-slate-500">Health Check Route: <code class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">/api/health</code> • Region: Singapore (ap-southeast-1)</div>
-          </div>
+        <!-- Prominent Action Links -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a
+            href="https://gmiu-ala1-cloud-app.onrender.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-between gap-3 p-4 rounded-xl bg-emerald-50/70 hover:bg-emerald-50 border border-emerald-200 transition"
+          >
+            <div class="min-w-0">
+              <div class="text-xs font-bold uppercase tracking-wider text-emerald-800">Live Deployed Web Application</div>
+              <div class="text-sm font-mono font-semibold text-emerald-700 group-hover:underline truncate mt-1">
+                https://gmiu-ala1-cloud-app.onrender.com
+              </div>
+            </div>
+            <span class="px-3 py-1.5 rounded-lg bg-emerald-600 group-hover:bg-emerald-700 text-white text-xs font-semibold shrink-0">
+              Open Live App ↗
+            </span>
+          </a>
 
-          <!-- Interactive URL Updater (Hidden on Print) -->
-          <div class="no-print flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-            <input
-              id="ala1-url-input"
-              type="url"
-              placeholder="Paste live Render URL..."
-              class="px-3 py-2 text-xs font-mono bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-60"
-            />
-            <button
-              type="button"
-              onclick="updateAla1Url()"
-              class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition cursor-pointer shrink-0"
-            >
-              Update URL
-            </button>
+          <a
+            href="https://github.com/mnv7912/ala1-cloud-deploy"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-between gap-3 p-4 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 transition"
+          >
+            <div class="min-w-0">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-600">Source Code &amp; Render Blueprint Repo</div>
+              <div class="text-sm font-mono font-semibold text-indigo-700 group-hover:underline truncate mt-1">
+                https://github.com/mnv7912/ala1-cloud-deploy
+              </div>
+            </div>
+            <span class="px-3 py-1.5 rounded-lg bg-slate-800 group-hover:bg-slate-900 text-white text-xs font-semibold shrink-0">
+              View Repo ↗
+            </span>
+          </a>
+        </div>
+
+        <!-- Deployment Configuration Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="font-semibold uppercase tracking-wider text-slate-500">Compute Service</div>
+            <div class="font-bold text-slate-900 mt-1">Render Web Service</div>
+            <div class="text-slate-600 mt-0.5">Linux • Python 3.14 • Gunicorn</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="font-semibold uppercase tracking-wider text-slate-500">Cloud Storage / DB</div>
+            <div class="font-bold text-slate-900 mt-1">Render Managed PostgreSQL</div>
+            <div class="text-slate-600 mt-0.5">Instance: <code class="font-mono">gmiu-ala1-db</code></div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="font-semibold uppercase tracking-wider text-slate-500">Secret Injection</div>
+            <div class="font-bold text-slate-900 mt-1">Managed Env Variables</div>
+            <div class="text-slate-600 mt-0.5">Auto-linked <code class="font-mono">DATABASE_URL</code></div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="font-semibold uppercase tracking-wider text-slate-500">Telemetry &amp; Monitoring</div>
+            <div class="font-bold text-slate-900 mt-1">psutil Live Metrics</div>
+            <div class="text-slate-600 mt-0.5">Host, vCPU cores &amp; RAM usage</div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- 2. Cloud Architecture & Resource Configuration -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+      <!-- 2. Cloud Architecture Diagram (Inline SVG) -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
         <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
-          2. Cloud Architecture &amp; Resource Configuration
+          2. Deployed Cloud Architecture Topology
         </h2>
-
-        <!-- Inline SVG Cloud Deployment Diagram -->
-        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60">
-          <svg viewBox="0 0 760 190" class="w-full h-auto max-h-52 mx-auto block" role="img" aria-label="ALA 1 Cloud Service Deployment Architecture">
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
+          <svg viewBox="0 0 800 205" class="w-full h-auto max-h-56 mx-auto block" role="img" aria-label="ALA 1 Cloud Service Deployment Architecture Diagram">
             <defs>
               <marker id="ala1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
               </marker>
+              <marker id="ala1-arrow-emerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"></path>
+              </marker>
             </defs>
-            <!-- User Browser -->
-            <rect x="16" y="55" width="130" height="76" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5" />
-            <text x="81" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">End User Browser</text>
-            <text x="81" y="105" text-anchor="middle" font-size="10.5" fill="#475569">HTTPS / REST Client</text>
 
-            <!-- Render PaaS -->
-            <rect x="200" y="38" width="230" height="110" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.8" />
-            <text x="315" y="64" text-anchor="middle" font-size="12.5" font-weight="700" fill="#312e81">Render Cloud Web Service</text>
-            <text x="315" y="84" text-anchor="middle" font-size="11" fill="#3730a3">Python 3.11 + FastAPI / Gunicorn</text>
-            <rect x="220" y="98" width="190" height="36" rx="6" fill="#ffffff" stroke="#a5b4fc" stroke-width="1" />
-            <text x="315" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">512 MB RAM • 0.5 Shared vCPU • Env Secrets</text>
+            <!-- Client Browser -->
+            <rect x="16" y="56" width="165" height="86" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.6" />
+            <text x="98" y="86" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0f172a">Client Browser</text>
+            <text x="98" y="105" text-anchor="middle" font-size="10.5" fill="#475569">Public Internet (HTTPS)</text>
+            <text x="98" y="123" text-anchor="middle" font-size="9.5" font-weight="600" fill="#4f46e5">GET / &amp; POST /add</text>
 
-            <!-- Supabase PostgreSQL -->
-            <rect x="492" y="22" width="248" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.6" />
-            <text x="616" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Supabase Managed PostgreSQL</text>
-            <text x="616" y="68" text-anchor="middle" font-size="10.5" fill="#047857">Relational Persistence • Connection Pooling</text>
+            <!-- Render Web Service (Compute) -->
+            <rect x="255" y="34" width="265" height="130" rx="12" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.8" />
+            <text x="387" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#312e81">Render Web Service (Compute)</text>
+            <text x="387" y="79" text-anchor="middle" font-size="11" fill="#3730a3">gmiu-ala1-cloud-app.onrender.com</text>
+            <rect x="275" y="92" width="225" height="56" rx="7" fill="#ffffff" stroke="#a5b4fc" stroke-width="1.1" />
+            <text x="387" y="113" text-anchor="middle" font-size="10.5" font-weight="600" fill="#0f172a">Linux Container • Python 3.14 • Gunicorn</text>
+            <text x="387" y="132" text-anchor="middle" font-size="10" fill="#475569">Flask App + psutil CPU/RAM Telemetry</text>
 
-            <!-- Supabase Storage Bucket -->
-            <rect x="492" y="102" width="248" height="64" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.6" />
-            <text x="616" y="129" text-anchor="middle" font-size="12" font-weight="700" fill="#075985">Supabase Cloud Object Storage</text>
-            <text x="616" y="148" text-anchor="middle" font-size="10.5" fill="#0369a1">S3-Compatible File Bucket • Signed URLs</text>
+            <!-- Managed PostgreSQL Database -->
+            <rect x="592" y="46" width="192" height="106" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="1.8" />
+            <text x="688" y="74" text-anchor="middle" font-size="12.5" font-weight="700" fill="#065f46">Managed PostgreSQL</text>
+            <text x="688" y="93" text-anchor="middle" font-size="11" font-weight="600" fill="#047857">gmiu-ala1-db</text>
+            <rect x="608" y="104" width="160" height="34" rx="6" fill="#ffffff" stroke="#6ee7b7" stroke-width="1" />
+            <text x="688" y="125" text-anchor="middle" font-size="10" fill="#064e3b">Table: deployment_logs</text>
 
-            <!-- Connectors -->
-            <line x1="146" y1="93" x2="196" y2="93" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
-            <line x1="430" y1="76" x2="488" y2="56" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
-            <line x1="430" y1="112" x2="488" y2="132" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
+            <!-- Arrows -->
+            <line x1="181" y1="99" x2="251" y2="99" stroke="#334155" stroke-width="1.8" marker-end="url(#ala1-arrow)" />
+            <text x="216" y="90" text-anchor="middle" font-size="9.5" font-weight="600" fill="#334155">TLS 1.3</text>
+
+            <line x1="520" y1="99" x2="588" y2="99" stroke="#059669" stroke-width="1.8" marker-end="url(#ala1-arrow-emerald)" />
+            <text x="554" y="90" text-anchor="middle" font-size="9.5" font-weight="600" fill="#065f46">psycopg2</text>
           </svg>
+          <p class="text-xs text-center font-semibold text-slate-500 mt-2">
+            Figure 1: End-to-end PaaS compute and managed relational database architecture deployed via Render Blueprint.
+          </p>
         </div>
+      </section>
 
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse text-sm">
-            <thead>
-              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
-                <th class="py-2.5 px-3.5 rounded-tl-lg">Cloud Tier</th>
-                <th class="py-2.5 px-3.5">Provider &amp; Service</th>
-                <th class="py-2.5 px-3.5">Allocated Resources</th>
-                <th class="py-2.5 px-3.5 rounded-tr-lg">Management &amp; Security Controls</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-slate-200 border border-slate-200">
-              <tr class="bg-white">
-                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Compute (PaaS)</td>
-                <td class="py-2.5 px-3.5">Render Web Service (Python Runtime)</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">0.5 vCPU • 512 MB RAM • Auto-TLS</td>
-                <td class="py-2.5 px-3.5">CI/CD GitHub Webhook deploy, automated health checks, zero-downtime restarts.</td>
-              </tr>
-              <tr class="bg-slate-50/70">
-                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Cloud Database</td>
-                <td class="py-2.5 px-3.5">Supabase Managed PostgreSQL 15</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">500 MB SSD • PgBouncer Pooler</td>
-                <td class="py-2.5 px-3.5">SSL-enforced connection string injected via encrypted environment variables.</td>
-              </tr>
-              <tr class="bg-white">
-                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Object Storage</td>
-                <td class="py-2.5 px-3.5">Supabase Storage Bucket</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">1 GB Object Quota • CDN Edge Cache</td>
-                <td class="py-2.5 px-3.5">Row-Level Security (RLS) policies and scoped API service role tokens.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- 3. Core Application Source Code Snippet (app.py) -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-3 avoid-break">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">3. Core Cloud Application Source Code (<code class="font-mono text-indigo-700">app.py</code>)</h2>
-            <p class="text-xs text-slate-500 mt-0.5">FastAPI service integrating cloud database persistence, storage upload, and runtime resource telemetry</p>
-          </div>
-          <button
-            type="button"
-            onclick="copyCodeBlock('code-ala1')"
-            class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold transition cursor-pointer"
-          >
-            <span>Copy Code</span>
-          </button>
-        </div>
-
-        <pre id="code-ala1" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>import os
-import time
-import psutil
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from supabase import create_client, Client
-
-app = FastAPI(title="GMIU Cloud Computing - ALA 1 Service")
-
-# Load cloud credentials securely from platform environment variables
-SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
-SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
-supabase: Client | None = create_client(SUPABASE_URL, SUPABASE_KEY) if SUPABASE_URL else None
-
-class NotePayload(BaseModel):
-    student_enrollment: str = "20230905090512"
-    title: str
-    content: str
-
-@app.get("/api/health")
-def health_check():
-    """Demonstrates live cloud compute & resource monitoring metrics."""
-    process = psutil.Process(os.getpid())
-    return {
-        "status": "healthy",
-        "student": "Manav Bhadreshbhai Joshi",
-        "enrollment": "20230905090512",
-        "course": "BETCE17336 - Cloud Computing",
-        "memory_mb": round(process.memory_info().rss / (1024 * 1024), 2),
-        "cpu_percent": psutil.cpu_percent(interval=0.1),
-        "timestamp": time.time(),
-    }
-
-@app.post("/api/records")
-def create_cloud_record(payload: NotePayload):
-    """Persists structured record to managed cloud PostgreSQL database."""
-    if not supabase:
-        raise HTTPException(status_code=503, detail="Cloud database environment not configured")
-    response = supabase.table("ala_submissions").insert(payload.model_dump()).execute()
-    return {"message": "Stored in Supabase PostgreSQL", "data": response.data}</code></pre>
-      </div>
-
-      <!-- 4. Deployment & Cloud Dashboard Screenshots Gallery Slots -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4">
+      <!-- 3. PERMANENT VERIFICATION SCREENSHOT GALLERY (CLICK TO ZOOM LIGHTBOX) -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
           <div>
-            <h2 class="text-lg font-bold text-slate-900">4. Deployment &amp; Cloud Dashboard Screenshots</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Upload local captures below to preview live before exporting PDF</p>
+            <h2 class="text-lg font-bold text-slate-900">3. Verified Deployment &amp; Cloud Dashboard Captures</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Click any capture below to inspect full-resolution evidence in lightbox view</p>
           </div>
-          <span class="text-xs font-semibold text-slate-500">3 Verification Captures</span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+            3 / 3 Captures Embedded
+          </span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Slot 1 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Capture 1.1 -->
+          <figure class="border border-slate-200 rounded-xl p-3.5 bg-slate-50/70 flex flex-col justify-between avoid-break">
             <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 1.1: Live Running Web App</span>
-                <span class="text-[11px] font-mono text-indigo-600">HTTPS UI</span>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-xs font-bold text-slate-900">Capture 1.1: Live Running Web App &amp; Cloud DB Persistence</span>
               </div>
-              <div id="preview-ala1-1" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="4" width="18" height="16" rx="2" />
-                  <path d="M3 9h18M8 14l2.5 2.5L16 11" />
-                </svg>
-                <p class="text-xs font-medium text-slate-600">Browser screenshot showing live Render URL &amp; JSON/UI response</p>
-              </div>
+              <button
+                type="button"
+                onclick="openLightbox('./ala1_1.png', 'Capture 1.1: Live Running Web App & Cloud DB Persistence (gmiu-ala1-cloud-app.onrender.com)')"
+                class="group relative w-full aspect-video rounded-lg bg-slate-900 border border-slate-300 overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <img
+                  src="./ala1_1.png"
+                  alt="Capture 1.1: Live Running Web App & Cloud DB Persistence"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200"
+                />
+                <div class="hidden w-full h-full flex flex-col items-center justify-center p-4 text-center text-slate-300 text-xs">
+                  <span class="font-mono text-amber-400">./ala1_1.png</span>
+                  <span class="mt-1">Live Running Web App Screenshot</span>
+                </div>
+                <span class="no-print absolute bottom-2 right-2 px-2 py-1 rounded bg-slate-900/80 text-white text-[11px] font-medium opacity-0 group-hover:opacity-100 transition">
+                  Click to Zoom
+                </span>
+              </button>
             </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-1')" />
-            </label>
+            <figcaption class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+              Live HTTPS web application displaying host telemetry, active PostgreSQL backend connection, and persisted database log entries.
+            </figcaption>
+          </figure>
+
+          <!-- Capture 1.2 -->
+          <figure class="border border-slate-200 rounded-xl p-3.5 bg-slate-50/70 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-xs font-bold text-slate-900">Capture 1.2: Render Web Service Active Logs &amp; Deployment</span>
+              </div>
+              <button
+                type="button"
+                onclick="openLightbox('./ala1_2.png', 'Capture 1.2: Render Web Service Active Logs & Deployment')"
+                class="group relative w-full aspect-video rounded-lg bg-slate-900 border border-slate-300 overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <img
+                  src="./ala1_2.png"
+                  alt="Capture 1.2: Render Web Service Active Logs & Deployment"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200"
+                />
+                <div class="hidden w-full h-full flex flex-col items-center justify-center p-4 text-center text-slate-300 text-xs">
+                  <span class="font-mono text-amber-400">./ala1_2.png</span>
+                  <span class="mt-1">Render Active Logs Screenshot</span>
+                </div>
+                <span class="no-print absolute bottom-2 right-2 px-2 py-1 rounded bg-slate-900/80 text-white text-[11px] font-medium opacity-0 group-hover:opacity-100 transition">
+                  Click to Zoom
+                </span>
+              </button>
+            </div>
+            <figcaption class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+              Render Web Service runtime logs confirming Gunicorn worker initialization, live health status, and HTTP request handling.
+            </figcaption>
+          </figure>
+
+          <!-- Capture 1.3 -->
+          <figure class="border border-slate-200 rounded-xl p-3.5 bg-slate-50/70 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-xs font-bold text-slate-900">Capture 1.3: Provisioned Cloud Resources (Web Service + PostgreSQL)</span>
+              </div>
+              <button
+                type="button"
+                onclick="openLightbox('./ala1_3.png', 'Capture 1.3: Provisioned Cloud Resources (Web Service + PostgreSQL)')"
+                class="group relative w-full aspect-video rounded-lg bg-slate-900 border border-slate-300 overflow-hidden cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              >
+                <img
+                  src="./ala1_3.png"
+                  alt="Capture 1.3: Provisioned Cloud Resources (Web Service + PostgreSQL)"
+                  onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');"
+                  class="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-200"
+                />
+                <div class="hidden w-full h-full flex flex-col items-center justify-center p-4 text-center text-slate-300 text-xs">
+                  <span class="font-mono text-amber-400">./ala1_3.png</span>
+                  <span class="mt-1">Provisioned Cloud Resources Screenshot</span>
+                </div>
+                <span class="no-print absolute bottom-2 right-2 px-2 py-1 rounded bg-slate-900/80 text-white text-[11px] font-medium opacity-0 group-hover:opacity-100 transition">
+                  Click to Zoom
+                </span>
+              </button>
+            </div>
+            <figcaption class="text-xs text-slate-600 mt-2.5 leading-relaxed">
+              Render cloud workspace showing both provisioned instances (<code class="font-mono">gmiu-ala1-cloud-app</code> and <code class="font-mono">gmiu-ala1-db</code>) active.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 4. Deployed Source Code & Infrastructure Blueprints -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5">
+        <div class="border-b border-slate-100 pb-3">
+          <h2 class="text-lg font-bold text-slate-900">4. Deployed Source Code &amp; Blueprint Configuration</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Complete files committed to <code class="font-mono text-indigo-700">mnv7912/ala1-cloud-deploy</code></p>
+        </div>
+
+        <!-- File 1: app.py -->
+        <div class="space-y-2 avoid-break">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-slate-900 font-mono">app.py <span class="font-sans font-normal text-xs text-slate-500">(Flask Compute Service + PostgreSQL Persistence + psutil Metrics)</span></span>
+            <button type="button" onclick="copyCodeBlock('ala1-code-app')" class="no-print px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold cursor-pointer transition">
+              Copy app.py
+            </button>
+          </div>
+          <pre id="ala1-code-app" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>import os
+import platform
+import socket
+from datetime import datetime
+import psutil
+from flask import Flask, request, redirect, render_template_string
+
+app = Flask(__name__)
+
+DATABASE_URL = os.environ.get("DATABASE_URL", "")
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+
+def get_db():
+    if DATABASE_URL:
+        import psycopg2
+        return psycopg2.connect(DATABASE_URL), "PostgreSQL (Managed Cloud DB)"
+    import sqlite3
+    return sqlite3.connect("local_fallback.db"), "SQLite (Local Storage)"
+
+
+def init_db():
+    conn, _ = get_db()
+    cur = conn.cursor()
+    if DATABASE_URL:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS deployment_logs (
+                id SERIAL PRIMARY KEY,
+                node_name TEXT NOT NULL,
+                note TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+        """)
+    else:
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS deployment_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                node_name TEXT NOT NULL,
+                note TEXT NOT NULL,
+                created_at TEXT NOT NULL
+            )
+        """)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
+init_db()
+
+
+@app.route("/")
+def index():
+    conn, db_type = get_db()
+    cur = conn.cursor()
+    cur.execute("SELECT id, node_name, note, created_at FROM deployment_logs ORDER BY id DESC LIMIT 10")
+    rows = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    vm = psutil.virtual_memory()
+    return render_template_string(
+        HTML,
+        hostname=socket.gethostname(),
+        db_type=db_type,
+        os_info=platform.system(),
+        py_ver=platform.python_version(),
+        cpu_count=psutil.cpu_count(logical=True),
+        mem_used=round(vm.used / (1024 * 1024), 1),
+        mem_total=round(vm.total / (1024 * 1024), 1),
+        rows=rows,
+    )
+
+
+@app.route("/add", methods=["POST"])
+def add():
+    node_name = request.form.get("node_name", "").strip()
+    note = request.form.get("note", "").strip()
+    if node_name and note:
+        conn, _ = get_db()
+        cur = conn.cursor()
+        ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
+        placeholder = "%s" if DATABASE_URL else "?"
+        cur.execute(
+            f"INSERT INTO deployment_logs (node_name, note, created_at) VALUES ({placeholder}, {placeholder}, {placeholder})",
+            (node_name, note, ts),
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+    return redirect("/")
+
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))</code></pre>
+        </div>
+
+        <!-- File 2 & 3 Side-by-Side: render.yaml & requirements.txt -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 avoid-break">
+          <div class="lg:col-span-2 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-slate-900 font-mono">render.yaml <span class="font-sans font-normal text-xs text-slate-500">(Render Blueprint IaC)</span></span>
+              <button type="button" onclick="copyCodeBlock('ala1-code-render')" class="no-print px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold cursor-pointer transition">
+                Copy render.yaml
+              </button>
+            </div>
+            <pre id="ala1-code-render" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>services:
+  - type: web
+    name: gmiu-ala1-cloud-app
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gmiu-ala1-db
+          property: connectionString
+
+databases:
+  - name: gmiu-ala1-db
+    plan: free</code></pre>
           </div>
 
-          <!-- Slot 2 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 1.2: Render Compute Metrics</span>
-                <span class="text-[11px] font-mono text-indigo-600">CPU / RAM</span>
-              </div>
-              <div id="preview-ala1-2" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M4 19h16M6 16V9m6 7V5m6 11v-4" />
-                </svg>
-                <p class="text-xs font-medium text-slate-600">Render dashboard showing active deployment logs, memory &amp; CPU usage</p>
-              </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-slate-900 font-mono">requirements.txt</span>
+              <button type="button" onclick="copyCodeBlock('ala1-code-reqs')" class="no-print px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold cursor-pointer transition">
+                Copy
+              </button>
             </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-2')" />
-            </label>
-          </div>
-
-          <!-- Slot 3 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 1.3: Supabase DB &amp; Storage</span>
-                <span class="text-[11px] font-mono text-indigo-600">Persistence</span>
-              </div>
-              <div id="preview-ala1-3" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <ellipse cx="12" cy="6" rx="8" ry="3" />
-                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
-                </svg>
-                <p class="text-xs font-medium text-slate-600">Supabase table rows &amp; storage bucket verification screenshot</p>
-              </div>
-            </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-3')" />
-            </label>
+            <pre id="ala1-code-reqs" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed h-[calc(100%-2rem)]"><code>flask
+gunicorn
+psycopg2-binary
+psutil</code></pre>
           </div>
         </div>
-      </div>
+      </section>
     </article>
 
     <!-- =================================================================== -->
-    <!-- VIEW: ALA 2 — VIRTUALIZATION IMPLEMENTATION (PRACTICAL TEMPLATE)    -->
+    <!-- VIEW: ALA 2 — VIRTUALIZATION IMPLEMENTATION (SETUP READY)           -->
     <!-- =================================================================== -->
     <article id="view-ala2" class="ala-view hidden space-y-6">
-      <!-- Report Title Banner -->
+      <!-- Title Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 02</span>
-          <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">Practical Setup Ready</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+            Setup Ready (Next Practical)
+          </span>
           <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
         </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           Virtualization Implementation: Multi-Container Resource Allocation &amp; Network Isolation
         </h1>
         <p class="text-sm sm:text-base text-slate-600 mt-2">
-          OS-Level Virtualization using Docker Engine &amp; Docker Compose orchestrating three isolated service containers with cgroups CPU/RAM limits, persistent volumes, and segmented bridge networks.
+          OS-level virtualization using Docker Engine &amp; Docker Compose orchestrating three isolated container instances with cgroups CPU/RAM caps, persistent storage volumes, and segmented bridge networks.
         </p>
       </div>
 
-      <!-- 1. Resource Allocation Matrix Table -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+      <!-- 1. Multi-Container Architecture Diagram (Inline SVG) -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
         <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
-          1. Virtual Instance Resource Allocation &amp; Isolation Matrix
+          1. Multi-Container Virtualization &amp; Network Isolation Architecture
+        </h2>
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
+          <svg viewBox="0 0 820 265" class="w-full h-auto block" role="img" aria-label="ALA 2 Multi-Container Docker Architecture Diagram">
+            <defs>
+              <marker id="ala2-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+              </marker>
+              <marker id="ala2-block" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                <path d="M 2 2 L 8 8 M 8 2 L 2 8" stroke="#dc2626" stroke-width="2"></path>
+              </marker>
+            </defs>
+
+            <!-- Host Machine Outer Boundary -->
+            <rect x="8" y="8" width="804" height="249" rx="14" fill="#ffffff" stroke="#334155" stroke-width="1.6" />
+            <text x="24" y="30" font-size="11.5" font-weight="700" fill="#0f172a">Host Machine: Apple MacBook Air (M4) • macOS</text>
+
+            <!-- Docker Engine Layer -->
+            <rect x="22" y="40" width="776" height="203" rx="10" fill="#f8fafc" stroke="#4f46e5" stroke-width="1.5" />
+            <text x="38" y="61" font-size="11" font-weight="700" fill="#312e81">Docker Engine Runtime (Linux Kernel Namespaces + cgroups v2 Resource Isolation)</text>
+
+            <!-- frontend_net Zone -->
+            <rect x="38" y="74" width="230" height="154" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,3" />
+            <text x="153" y="93" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1d4ed8">frontend_net (Bridge)</text>
+            <rect x="54" y="106" width="198" height="78" rx="8" fill="#ffffff" stroke="#2563eb" stroke-width="1.4" />
+            <text x="153" y="128" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">ala2-nginx</text>
+            <text x="153" y="145" text-anchor="middle" font-size="10" fill="#475569">nginx:alpine • Port 8080:80</text>
+            <text x="153" y="163" text-anchor="middle" font-size="10" font-weight="700" fill="#1e40af">0.25 vCPU • 128 MB RAM</text>
+
+            <!-- backend_net Zone (internal: true) -->
+            <rect x="308" y="74" width="474" height="154" rx="10" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5" stroke-dasharray="4,3" />
+            <text x="545" y="93" text-anchor="middle" font-size="10.5" font-weight="700" fill="#854d0e">backend_net (Bridge • internal: true — Isolated from External Access)</text>
+
+            <!-- ala2-api -->
+            <rect x="326" y="106" width="202" height="78" rx="8" fill="#ffffff" stroke="#4f46e5" stroke-width="1.5" />
+            <text x="427" y="128" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">ala2-api</text>
+            <text x="427" y="145" text-anchor="middle" font-size="10" fill="#475569">python:3.12-alpine (Dual-Homed)</text>
+            <text x="427" y="163" text-anchor="middle" font-size="10" font-weight="700" fill="#3730a3">0.50 vCPU • 256 MB RAM</text>
+
+            <!-- ala2-redis -->
+            <rect x="566" y="106" width="200" height="78" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.5" />
+            <text x="666" y="128" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">ala2-redis</text>
+            <text x="666" y="145" text-anchor="middle" font-size="10" fill="#047857">redis:7-alpine • Vol: ala2_data</text>
+            <text x="666" y="163" text-anchor="middle" font-size="10" font-weight="700" fill="#065f46">0.25 vCPU • 128 MB RAM</text>
+
+            <!-- Allowed Flow: nginx -> api -->
+            <line x1="252" y1="145" x2="322" y2="145" stroke="#334155" stroke-width="1.6" marker-end="url(#ala2-arrow)" />
+            <text x="287" y="137" text-anchor="middle" font-size="9" font-weight="600" fill="#334155">HTTP</text>
+
+            <!-- Allowed Flow: api -> redis -->
+            <line x1="528" y1="145" x2="562" y2="145" stroke="#059669" stroke-width="1.6" marker-end="url(#ala2-arrow)" />
+
+            <!-- Blocked Flow: nginx -X-> redis -->
+            <path d="M 153 184 L 153 212 L 666 212 L 666 188" fill="none" stroke="#dc2626" stroke-width="1.4" stroke-dasharray="4,3" />
+            <text x="410" y="206" text-anchor="middle" font-size="9.5" font-weight="700" fill="#dc2626">
+              ✕ Direct Access Blocked (Network Isolation Verified via ping test)
+            </text>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 2. Resource Allocation Matrix -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
+          2. Virtual Instance Resource Allocation &amp; Isolation Matrix
         </h2>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
             <thead>
-              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
-                <th class="py-2.5 px-3.5 rounded-tl-lg">Container Name</th>
+              <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-2.5 px-3.5 rounded-tl-lg">Container Instance</th>
                 <th class="py-2.5 px-3.5">Base Image</th>
                 <th class="py-2.5 px-3.5">CPU Quota</th>
-                <th class="py-2.5 px-3.5">RAM Limit</th>
-                <th class="py-2.5 px-3.5">Storage Volume</th>
-                <th class="py-2.5 px-3.5 rounded-tr-lg">Network Isolation</th>
+                <th class="py-2.5 px-3.5">RAM Cap</th>
+                <th class="py-2.5 px-3.5">Storage Mount</th>
+                <th class="py-2.5 px-3.5 rounded-tr-lg">Network Segmentation</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-200 border border-slate-200">
               <tr class="bg-white">
-                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-nginx-proxy</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">nginx:1.27-alpine</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.25 vCPU</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">128 MB</td>
-                <td class="py-2.5 px-3.5 text-xs">Read-only config bind (<code class="font-mono">./nginx.conf:ro</code>)</td>
-                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono">frontend_net</span> (Public Port 8080)</td>
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">ala2-nginx</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">nginx:alpine</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">0.25 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">128 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Read-only bind (<code class="font-mono">nginx.conf:ro</code>)</td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-mono">frontend_net</span> (Host Port 8080)</td>
               </tr>
               <tr class="bg-slate-50/70">
-                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-python-api</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">python:3.11-slim</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.50 vCPU</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">256 MB</td>
-                <td class="py-2.5 px-3.5 text-xs">Named volume <code class="font-mono">api_logs:/var/log/app</code></td>
-                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono">frontend_net</span> + <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span></td>
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">ala2-api</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">python:3.12-alpine</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">0.50 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">256 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Ephemeral overlayfs</td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200 font-mono">frontend_net</span> + <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span></td>
               </tr>
               <tr class="bg-white">
-                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-redis-cache</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs">redis:7.2-alpine</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.25 vCPU</td>
-                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">128 MB</td>
-                <td class="py-2.5 px-3.5 text-xs">Persistent AOF volume <code class="font-mono">redis_data:/data</code></td>
-                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span> (Internal Only — Isolated)</td>
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">ala2-redis</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">redis:7-alpine</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">0.25 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs font-semibold text-indigo-700">128 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Named volume <code class="font-mono">ala2_data:/data</code></td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span> (<code class="font-mono">internal: true</code>)</td>
               </tr>
             </tbody>
           </table>
         </div>
-      </div>
+      </section>
 
-      <!-- 2. Complete docker-compose.yml Configuration -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-3 avoid-break">
-        <div class="flex items-center justify-between gap-3">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">2. Multi-Container Orchestration (<code class="font-mono text-indigo-700">docker-compose.yml</code>)</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Enforces cgroups CPU/memory ceilings, storage persistence, and strict east-west network segmentation</p>
-          </div>
-          <button
-            type="button"
-            onclick="copyCodeBlock('code-ala2')"
-            class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold transition cursor-pointer"
-          >
-            <span>Copy YAML</span>
-          </button>
+      <!-- 3. Configuration Files & Verification Commands -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5">
+        <div class="border-b border-slate-100 pb-3">
+          <h2 class="text-lg font-bold text-slate-900">3. Container Definitions &amp; Verification Commands</h2>
+          <p class="text-xs text-slate-500 mt-0.5">Ready-to-run configuration files and CLI verification suite</p>
         </div>
 
-        <pre id="code-ala2" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>version: "3.9"
-
-services:
-  # 1. Edge Reverse Proxy Container (Public DMZ Network)
-  nginx-proxy:
-    image: nginx:1.27-alpine
-    container_name: gmiu-nginx-proxy
+        <!-- docker-compose.yml -->
+        <div class="space-y-2 avoid-break">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-slate-900 font-mono">docker-compose.yml</span>
+            <button type="button" onclick="copyCodeBlock('ala2-code-compose')" class="no-print px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold cursor-pointer transition">
+              Copy YAML
+            </button>
+          </div>
+          <pre id="ala2-code-compose" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>services:
+  web-proxy:
+    image: nginx:alpine
+    container_name: ala2-nginx
+    cpus: 0.25
+    mem_limit: 128m
     ports:
       - "8080:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    cpus: "0.25"
-    mem_limit: 128m
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     networks:
       - frontend_net
     depends_on:
-      - python-api
+      - app-service
 
-  # 2. Application Logic Container (Bridges Frontend & Private Backend)
-  python-api:
+  app-service:
     build: ./api
-    container_name: gmiu-python-api
-    environment:
-      - REDIS_HOST=gmiu-redis-cache
-      - STUDENT_ID=20230905090512
-    volumes:
-      - api_logs:/var/log/app
-    cpus: "0.50"
+    container_name: ala2-api
+    cpus: 0.50
     mem_limit: 256m
     networks:
       - frontend_net
       - backend_net
     depends_on:
-      - redis-cache
+      - cache-db
 
-  # 3. Isolated In-Memory Data Store (Strictly Internal Network)
-  redis-cache:
-    image: redis:7.2-alpine
-    container_name: gmiu-redis-cache
-    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "96mb"]
-    volumes:
-      - redis_data:/data
-    cpus: "0.25"
+  cache-db:
+    image: redis:7-alpine
+    container_name: ala2-redis
+    cpus: 0.25
     mem_limit: 128m
+    volumes:
+      - ala2_data:/data
     networks:
       - backend_net
-
-volumes:
-  api_logs:
-  redis_data:
 
 networks:
   frontend_net:
     driver: bridge
   backend_net:
     driver: bridge
-    internal: true  # Blocks direct external internet & frontend_net access</code></pre>
-      </div>
+    internal: true
 
-      <!-- 3. Execution & Terminal Verification Screenshots -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4">
-        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
-          <div>
-            <h2 class="text-lg font-bold text-slate-900">3. Execution, <code class="font-mono text-indigo-700">docker stats</code> &amp; Network Isolation Captures</h2>
-            <p class="text-xs text-slate-500 mt-0.5">Attach local terminal screenshots demonstrating live resource quotas and container isolation</p>
-          </div>
-          <span class="text-xs font-semibold text-slate-500">3 Terminal Captures</span>
+volumes:
+  ala2_data:</code></pre>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <!-- Slot 1 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 2.1: <code class="font-mono">docker compose up -d</code></span>
-                <span class="text-[11px] font-mono text-indigo-600">Provisioning</span>
-              </div>
-              <div id="preview-ala2-1" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <code class="text-[11px] font-mono text-emerald-400">$ docker compose ps</code>
-                <p class="text-[11px] text-slate-300 mt-1.5">Terminal capture showing all 3 containers running in healthy state</p>
-              </div>
+        <!-- nginx.conf, api/Dockerfile, api/app.py -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 avoid-break">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-900 font-mono">nginx/nginx.conf</span>
+              <button type="button" onclick="copyCodeBlock('ala2-code-nginx')" class="no-print px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px] font-semibold cursor-pointer">
+                Copy
+              </button>
             </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-1')" />
-            </label>
+            <pre id="ala2-code-nginx" class="bg-slate-900 text-slate-100 rounded-xl p-3.5 text-xs font-mono overflow-x-auto leading-relaxed"><code>server {
+    listen 80;
+    location / {
+        proxy_pass http://ala2-api:5000;
+    }
+}</code></pre>
           </div>
 
-          <!-- Slot 2 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 2.2: <code class="font-mono">docker stats</code> Quotas</span>
-                <span class="text-[11px] font-mono text-indigo-600">CPU &amp; MEM</span>
-              </div>
-              <div id="preview-ala2-2" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <code class="text-[11px] font-mono text-sky-400">$ docker stats --no-stream</code>
-                <p class="text-[11px] text-slate-300 mt-1.5">Verifies 128MiB / 256MiB memory limits and CPU utilization caps</p>
-              </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-900 font-mono">api/Dockerfile</span>
+              <button type="button" onclick="copyCodeBlock('ala2-code-dockerfile')" class="no-print px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px] font-semibold cursor-pointer">
+                Copy
+              </button>
             </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-2')" />
-            </label>
+            <pre id="ala2-code-dockerfile" class="bg-slate-900 text-slate-100 rounded-xl p-3.5 text-xs font-mono overflow-x-auto leading-relaxed"><code>FROM python:3.12-alpine
+WORKDIR /app
+RUN pip install --no-cache-dir flask redis
+COPY app.py .
+CMD ["python", "app.py"]</code></pre>
           </div>
 
-          <!-- Slot 3 -->
-          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-xs font-bold text-slate-800">Capture 2.3: Network Isolation Test</span>
-                <span class="text-[11px] font-mono text-indigo-600">Namespace</span>
-              </div>
-              <div id="preview-ala2-3" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
-                <code class="text-[11px] font-mono text-amber-400">$ docker exec gmiu-nginx-proxy ping gmiu-redis-cache</code>
-                <p class="text-[11px] text-slate-300 mt-1.5">Proves frontend proxy cannot reach isolated backend Redis container</p>
-              </div>
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-900 font-mono">api/app.py</span>
+              <button type="button" onclick="copyCodeBlock('ala2-code-api')" class="no-print px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px] font-semibold cursor-pointer">
+                Copy
+              </button>
             </div>
-            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
-              <span>Attach Screenshot</span>
-              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-3')" />
-            </label>
+            <pre id="ala2-code-api" class="bg-slate-900 text-slate-100 rounded-xl p-3.5 text-xs font-mono overflow-x-auto leading-relaxed"><code>import socket, redis
+from flask import Flask, jsonify
+app = Flask(__name__)
+r = redis.Redis(host="ala2-redis", port=6379, decode_responses=True)
+@app.route("/")
+def status():
+    return jsonify({"status": "Isolated Container Running", "host": socket.gethostname(), "hits": r.incr("hits")})
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)</code></pre>
           </div>
         </div>
-      </div>
+
+        <!-- Terminal Verification Commands -->
+        <div class="space-y-2 avoid-break">
+          <div class="flex items-center justify-between">
+            <span class="text-sm font-bold text-slate-900">Terminal Verification Commands (<code class="font-mono text-indigo-700">docker stats</code> &amp; Network Isolation Test)</span>
+            <button type="button" onclick="copyCodeBlock('ala2-code-verify')" class="no-print px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold cursor-pointer transition">
+              Copy Commands
+            </button>
+          </div>
+          <pre id="ala2-code-verify" class="bg-slate-900 text-emerald-300 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code># 1. Start all 3 isolated virtual instances
+docker compose up -d --build
+
+# 2. Verify CPU and Memory allocation ceilings (128MiB / 256MiB / 128MiB)
+docker stats --no-stream
+
+# 3. Verify Network Isolation:
+# Allowed: Frontend proxy reaches dual-homed API container
+docker exec ala2-nginx wget -qO- http://ala2-api:5000/
+
+# Blocked: Frontend proxy cannot resolve/ping isolated backend Redis container
+docker exec ala2-nginx ping -c 2 ala2-redis</code></pre>
+        </div>
+      </section>
     </article>
 
     <!-- =================================================================== -->
@@ -898,14 +1083,17 @@ networks:
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 03</span>
-          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Review Paper</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Completed Review Paper
+          </span>
           <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
         </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
           Comparative Analysis of Cloud Security Architectures: IAM, Cryptography, and Data Protection Across Major CSPs
         </h1>
         <p class="text-sm text-slate-600 mt-2">
-          Review Activity evaluating Identity and Access Management, Envelope Encryption, Data Protection Controls, Real-World Cloud Breaches, and Zero Trust Best Practices.
+          Review Activity analyzing the Shared Responsibility Model, Identity &amp; Access Management, Envelope Encryption, Confidential Computing, Real-World Breaches, and Zero Trust Best Practices.
         </p>
       </div>
 
@@ -914,7 +1102,7 @@ networks:
         <div class="bg-indigo-50/70 border-l-4 border-indigo-600 rounded-r-xl p-4 sm:p-5">
           <h2 class="text-base font-bold text-indigo-950 uppercase tracking-wide mb-2">1. Abstract</h2>
           <p class="text-sm text-slate-700 leading-relaxed">
-            Enterprise migration to public cloud infrastructure shifts security engineering from static network-perimeter defense to identity-centric, software-defined governance. Operating under the <strong>Shared Responsibility Model</strong>, Cloud Service Providers (CSPs) secure the underlying physical facilities, virtualization hypervisors, and global backbone networks (<em>security of the cloud</em>), whereas tenant organizations remain accountable for Identity and Access Management (IAM), cryptographic key governance, and data classification (<em>security in the cloud</em>). This review paper evaluates <strong>Amazon Web Services (AWS)</strong> as the primary reference architecture—benchmarked against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>—across IAM models, encryption protocols, data protection controls, real-world breach root causes, and Zero Trust best practices.
+            Enterprise migration to public cloud infrastructure transforms security engineering from static network-perimeter defense to identity-centric, software-defined governance. Operating under the <strong>Shared Responsibility Model</strong>, Cloud Service Providers (CSPs) secure physical facilities, hypervisors, and network fabrics (<em>security of the cloud</em>), whereas tenants remain accountable for Identity and Access Management (IAM), cryptographic key governance, and data protection (<em>security in the cloud</em>). This review paper evaluates <strong>Amazon Web Services (AWS)</strong> as the primary reference architecture—benchmarked against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>—across IAM models, encryption protocols, data protection controls, real-world breach root causes, and Zero Trust best practices.
           </p>
         </div>
       </section>
@@ -925,50 +1113,47 @@ networks:
           2. Core Security Architecture Analysis (Reference Platform: AWS)
         </h2>
 
-        <!-- A. IAM -->
         <div class="space-y-2 avoid-break">
           <h3 class="text-base font-bold text-indigo-800">2.1 Identity and Access Management (IAM)</h3>
           <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
             <li>
-              <strong>Hybrid RBAC &amp; ABAC Authorization:</strong> Combines Role-Based Access Control (RBAC) with Attribute-Based Access Control (ABAC) using dynamic session tags and JSON policy conditions such as <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:PrincipalTag</code> and <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:SourceIp</code>, allowing fine-grained access control without policy sprawl.
+              <strong>Hybrid RBAC &amp; ABAC Authorization:</strong> Combines Role-Based Access Control (RBAC) with Attribute-Based Access Control (ABAC) using session tags and JSON policy conditions (<code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:PrincipalTag</code>, <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:SourceIp</code>), scaling authorization without policy sprawl.
             </li>
             <li>
-              <strong>Short-Lived Federated Credentials:</strong> Eliminates hardcoded static API access keys by integrating enterprise Identity Providers via <strong>SAML 2.0</strong> and <strong>OpenID Connect (OIDC)</strong>. The <strong>AWS Security Token Service (STS)</strong> issues temporary, auto-rotating credentials scoped to bounded session durations.
+              <strong>Short-Lived Federated Credentials:</strong> Replaces static API access keys with enterprise Identity Provider federation via <strong>SAML 2.0</strong> and <strong>OpenID Connect (OIDC)</strong>. The <strong>AWS Security Token Service (STS)</strong> issues temporary, auto-rotating credentials scoped to bounded session durations.
             </li>
             <li>
-              <strong>Organizational Guardrails &amp; Evaluation Logic:</strong> Enforces multi-account permission ceilings via <strong>Service Control Policies (SCPs)</strong> and <strong>Permission Boundaries</strong>. Policy evaluation strictly defaults to <em>implicit deny</em>, while any <em>explicit deny</em> overrides all allow statements.
-            </li>
-          </ul>
-        </div>
-
-        <!-- B. Encryption Techniques -->
-        <div class="space-y-2 avoid-break">
-          <h3 class="text-base font-bold text-indigo-800">2.2 Cryptographic Controls &amp; Encryption Techniques</h3>
-          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
-            <li>
-              <strong>Data at Rest &amp; Envelope Encryption:</strong> Standardizes on <strong>AES-256-GCM</strong> via <strong>AWS Key Management Service (KMS)</strong> backed by FIPS 140-3 Level 3 validated Hardware Security Modules (HSMs). Using <em>envelope encryption</em>, storage services encrypt large payloads locally with a unique plaintext <strong>Data Key</strong>, which is itself encrypted by a root <strong>Customer-Managed Key (CMK)</strong> and stored alongside the ciphertext.
-            </li>
-            <li>
-              <strong>Data in Transit:</strong> Enforces <strong>TLS 1.3</strong> with Perfect Forward Secrecy across all public API endpoints, complemented by automatic hardware-accelerated encryption between AWS Nitro-based EC2 compute instances inside VPCs.
-            </li>
-            <li>
-              <strong>Flexible Key Sovereignty:</strong> Supports CSP-managed keys, Customer-Managed Keys (CMKs) with automated annual rotation, <strong>Bring Your Own Key (BYOK)</strong> imported from on-premise HSMs, and <strong>Hold Your Own Key (HYOK)</strong> via AWS KMS External Key Store (XKS) for strict regulatory sovereignty.
+              <strong>Organizational Guardrails &amp; Policy Logic:</strong> Enforces multi-account permission ceilings via <strong>Service Control Policies (SCPs)</strong> and <strong>Permission Boundaries</strong>. Policy evaluation defaults to <em>implicit deny</em>, while any <em>explicit deny</em> overrides all allow rules.
             </li>
           </ul>
         </div>
 
-        <!-- C. Data Protection Mechanisms -->
         <div class="space-y-2 avoid-break">
-          <h3 class="text-base font-bold text-indigo-800">2.3 Data Protection &amp; Confidential Computing Mechanisms</h3>
+          <h3 class="text-base font-bold text-indigo-800">2.2 Cryptographic Controls &amp; Envelope Encryption</h3>
           <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
             <li>
-              <strong>Storage Access Guardrails &amp; WORM Immutability:</strong> Account-level <strong>S3 Block Public Access</strong> overrides permissive bucket ACLs, while <strong>S3 Object Lock</strong> enforces Write-Once-Read-Many (WORM) retention in Compliance Mode to prevent ransomware deletion.
+              <strong>Data at Rest &amp; Envelope Encryption:</strong> Standardizes on <strong>AES-256-GCM</strong> via <strong>AWS Key Management Service (KMS)</strong> backed by FIPS 140-3 Level 3 validated Hardware Security Modules (HSMs). Storage services encrypt datasets locally with a unique plaintext <strong>Data Key</strong>, which is wrapped by a root <strong>Customer-Managed Key (CMK)</strong> and stored alongside the ciphertext.
             </li>
             <li>
-              <strong>Automated Data Loss Prevention (DLP):</strong> <strong>Amazon Macie</strong> continuously applies machine-learning classifiers across S3 buckets to discover exposed PII, financial records, and leaked credentials.
+              <strong>Data in Transit &amp; Hardware Nitro Encryption:</strong> Enforces <strong>TLS 1.3</strong> with Perfect Forward Secrecy across public endpoints, paired with automatic hardware-level encryption between AWS Nitro EC2 compute instances inside VPCs.
             </li>
             <li>
-              <strong>Confidential Computing in Use:</strong> <strong>AWS Nitro Enclaves</strong> create isolated, hardened vCPU and memory partitions without persistent storage or external networking, protecting sensitive workloads <em>in use</em> from host operating system inspection.
+              <strong>Key Sovereignty Tiers:</strong> Supports CSP-managed keys, Customer-Managed Keys (CMKs) with automated rotation, <strong>Bring Your Own Key (BYOK)</strong> from on-premise HSMs, and <strong>Hold Your Own Key (HYOK)</strong> via KMS External Key Store.
+            </li>
+          </ul>
+        </div>
+
+        <div class="space-y-2 avoid-break">
+          <h3 class="text-base font-bold text-indigo-800">2.3 Data Protection &amp; Confidential Computing</h3>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong>Access Guardrails &amp; WORM Immutability:</strong> Account-level <strong>S3 Block Public Access</strong> overrides permissive bucket ACLs, while <strong>S3 Object Lock</strong> enforces Write-Once-Read-Many (WORM) retention in Compliance Mode to prevent ransomware deletion.
+            </li>
+            <li>
+              <strong>Automated Data Loss Prevention (DLP):</strong> <strong>Amazon Macie</strong> applies machine-learning classifiers across S3 buckets to discover exposed PII, financial records, and leaked credentials.
+            </li>
+            <li>
+              <strong>Confidential Computing in Use:</strong> <strong>AWS Nitro Enclaves</strong> create isolated, hardened vCPU and memory partitions without persistent storage or external networking, protecting sensitive data <em>in use</em> from host inspection.
             </li>
           </ul>
         </div>
@@ -1031,7 +1216,6 @@ networks:
           4. Real-World Cloud Breach Scenarios &amp; Root Cause Analysis
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Breach 1 -->
           <div class="border border-rose-200 bg-rose-50/40 rounded-xl p-5 space-y-2.5">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Case 1 • SSRF &amp; IAM Over-Privilege</span>
@@ -1039,14 +1223,13 @@ networks:
             </div>
             <h3 class="text-base font-bold text-slate-900">Capital One Data Breach</h3>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <strong>Attack Vector:</strong> An attacker exploited a misconfigured ModSecurity WAF running on an AWS EC2 instance to execute a <strong>Server-Side Request Forgery (SSRF)</strong> attack against the EC2 Instance Metadata Service (<strong>IMDSv1</strong> at <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">169.254.169.254</code>), extracting temporary IAM role credentials.
+              <strong>Attack Vector:</strong> Exploited a misconfigured ModSecurity WAF on an AWS EC2 instance to execute Server-Side Request Forgery (SSRF) against the EC2 Instance Metadata Service (<strong>IMDSv1</strong> at <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">169.254.169.254</code>), harvesting temporary IAM role credentials.
             </p>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <strong>Impact &amp; Root Cause:</strong> Overly permissive IAM permissions (<code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:ListBucket</code>, <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:GetObject</code>) allowed exfiltration of <strong>100M+ customer records</strong>. Root cause: lack of least-privilege IAM scoping and reliance on unauthenticated IMDSv1.
+              <strong>Impact &amp; Root Cause:</strong> Over-permissive IAM roles (<code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:ListBucket</code>, <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:GetObject</code>) enabled exfiltration of <strong>100M+ customer records</strong>. Root cause: lack of least-privilege IAM scoping and unauthenticated IMDSv1.
             </p>
           </div>
 
-          <!-- Breach 2 -->
           <div class="border border-amber-200 bg-amber-50/40 rounded-xl p-5 space-y-2.5">
             <div class="flex items-center justify-between gap-2">
               <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Case 2 • Cloud Misconfiguration</span>
@@ -1054,7 +1237,7 @@ networks:
             </div>
             <h3 class="text-base font-bold text-slate-900">Toyota Connected Cloud Exposure</h3>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-              <strong>Attack Vector:</strong> A cloud database and storage environment remained publicly accessible without authentication for nearly a decade due to improper access control lists (ACLs) and missing configuration drift alerts.
+              <strong>Attack Vector:</strong> A cloud database and storage environment remained publicly accessible without authentication due to improper access control lists (ACLs) and lack of automated configuration drift alerting.
             </p>
             <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
               <strong>Impact &amp; Root Cause:</strong> Exposure of approximately <strong>2.15 million vehicle location histories</strong> and terminal identifiers. Root cause: absence of continuous Cloud Security Posture Management (CSPM) and automated public-access guardrails.
@@ -1063,17 +1246,17 @@ networks:
         </div>
       </section>
 
-      <!-- 5. Cloud Security Best Practices & 6. References -->
+      <!-- 5. Best Practices & 6. References -->
       <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
         <div class="space-y-3">
           <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
-            5. Cloud Security Best Practices (Defense-in-Depth)
+            5. Zero Trust Best Practices for Securing Cloud Environments
           </h2>
           <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
-            <li><strong>Enforce IMDSv2 Session Tokens:</strong> Mandate session-oriented <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">PUT</code> token headers with restricted hop limits across all EC2 instances to neutralize SSRF metadata credential theft.</li>
-            <li><strong>Zero Trust &amp; Least Privilege IAM:</strong> Replace long-lived IAM users with federated OIDC roles, enforce FIDO2 MFA, and continuously prune unused permissions with <strong>IAM Access Analyzer</strong>.</li>
-            <li><strong>Shift-Left Infrastructure as Code (IaC) Scanning:</strong> Integrate static policy scanners (<code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">Checkov</code>, <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">tfsec</code>) inside CI/CD pipelines to block open security groups or unencrypted buckets prior to deployment.</li>
-            <li><strong>Immutable Centralized Audit Trails:</strong> Stream all API events (AWS CloudTrail / Azure Activity Logs) into a centralized, WORM-locked Security Log Archive account isolated from production administrators.</li>
+            <li><strong>Enforce IMDSv2 Session Tokens:</strong> Mandate session-oriented <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">PUT</code> token headers with restricted hop limits across all compute instances to block SSRF credential theft.</li>
+            <li><strong>Zero Trust &amp; Least Privilege IAM:</strong> Replace long-lived IAM users with federated OIDC roles, mandate FIDO2 MFA, and continuously prune unused permissions with <strong>IAM Access Analyzer</strong>.</li>
+            <li><strong>Shift-Left Infrastructure as Code (IaC) Scanning:</strong> Integrate static security scanners (<code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">Checkov</code>, <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">tfsec</code>) inside CI/CD pipelines to block open security groups or unencrypted storage before deployment.</li>
+            <li><strong>Immutable Centralized Audit Trails:</strong> Stream all API calls (AWS CloudTrail / Azure Activity Logs) into a centralized, WORM-locked Security Log Archive account isolated from production administrators.</li>
           </ol>
         </div>
 
@@ -1093,11 +1276,14 @@ networks:
     <!-- VIEW: ALA 4 — CLOUD RISK & SLA EVALUATION (INDUSTRY CASE STUDY)     -->
     <!-- =================================================================== -->
     <article id="view-ala4" class="ala-view hidden space-y-6">
-      <!-- Report Title Banner -->
+      <!-- Title Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 04</span>
-          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Case Study</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Completed Case Study
+          </span>
           <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
         </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
@@ -1114,7 +1300,7 @@ networks:
           1. Case Study Overview
         </h2>
         <p class="text-sm text-slate-700 leading-relaxed">
-          Mission-critical enterprises running financial transactions, healthcare platforms, and large-scale digital services depend on hyperscale Cloud Service Providers (CSPs) for continuous availability and regulatory compliance. This case study evaluates <strong>Amazon Web Services (AWS)</strong> as a primary enterprise cloud provider, benchmarking its contractual Service Level Agreements (SLAs), service credit tiers, regulatory compliance frameworks, and operational risk profile against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>.
+          Mission-critical enterprises operating financial, healthcare, and digital platforms rely on hyperscale Cloud Service Providers (CSPs) for continuous uptime and regulatory compliance. This case study evaluates <strong>Amazon Web Services (AWS)</strong> as a primary enterprise cloud provider, benchmarking its contractual Service Level Agreements (SLAs), monthly downtime budgets, service credit structures, compliance attestations, and operational risks against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>.
         </p>
       </section>
 
@@ -1177,7 +1363,6 @@ networks:
 
       <!-- 3. Compliance Frameworks & 4. Critical SLA Gaps -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- 3. Compliance Frameworks -->
         <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
           <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
             3. Compliance Frameworks &amp; Regulatory Alignment
@@ -1189,11 +1374,11 @@ networks:
             </li>
             <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
               <strong class="text-slate-900 block">SOC 1 / SOC 2 Type II</strong>
-              Continuous validation of operational effectiveness across Security, Availability, Processing Integrity, and Confidentiality trust criteria.
+              Continuous independent validation of operational effectiveness across Security, Availability, Processing Integrity, and Confidentiality trust criteria.
             </li>
             <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
               <strong class="text-slate-900 block">DPDP Act 2023 (India) &amp; GDPR (EU)</strong>
-              Enforces strict regional data residency in <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-1</code> (Mumbai) and <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-2</code> (Hyderabad), Data Processing Addendums (DPAs), and cryptographic right-to-erasure controls.
+              Enforces regional data residency in <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-1</code> (Mumbai) and <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-2</code> (Hyderabad), Data Processing Addendums (DPAs), and cryptographic right-to-erasure controls.
             </li>
             <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
               <strong class="text-slate-900 block">PCI-DSS v4.0 &amp; HIPAA</strong>
@@ -1202,23 +1387,22 @@ networks:
           </ul>
         </section>
 
-        <!-- 4. Critical SLA Gaps Identified -->
         <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
           <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
             4. Critical SLA Gaps Identified
           </h2>
           <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700 leading-relaxed">
             <li>
-              <strong class="text-slate-900">Asymmetric Financial Liability:</strong> Service credits are strictly capped at 100% of the affected service’s monthly infrastructure fee, excluding downstream business revenue loss, customer churn, or regulatory fines.
+              <strong class="text-slate-900">Asymmetric Financial Liability:</strong> Service credits are capped at 100% of the affected service’s monthly infrastructure fee, never compensating for lost business revenue, customer churn, or regulatory penalties.
             </li>
             <li>
               <strong class="text-slate-900">Strict Multi-AZ Preconditions:</strong> AWS’s 99.99% EC2 SLA applies <em>only</em> when workloads span two or more Availability Zones; single-AZ deployments receive zero SLA credit protection during zone-level outages.
             </li>
             <li>
-              <strong class="text-slate-900">Burden of Proof on the Tenant:</strong> Credits are non-automatic—customers must collect independent outage logs and file formal claims within two billing cycles.
+              <strong class="text-slate-900">Burden of Proof on the Tenant:</strong> Credits are non-automatic—customers must gather independent outage logs and file formal claims within two billing cycles.
             </li>
             <li>
-              <strong class="text-slate-900">Broad Exclusions &amp; Composite Decay:</strong> Excludes <em>Force Majeure</em>, external DDoS floods, and tenant misconfigurations. Furthermore, chaining four 99.99%–99.9% services in series reduces composite availability to <strong>99.83%</strong> (~74.5 min/mo downtime).
+              <strong class="text-slate-900">Exclusions &amp; Composite Availability Decay:</strong> Excludes <em>Force Majeure</em>, external DDoS floods, and tenant misconfigurations. Chaining four serial 99.99%–99.9% services reduces composite end-to-end availability to <strong>99.83%</strong> (~74.5 min/mo downtime).
             </li>
           </ol>
         </section>
@@ -1298,11 +1482,14 @@ networks:
     <!-- VIEW: ALA 5 — CLOUD PERFORMANCE OPTIMIZATION & AUTO-SCALING         -->
     <!-- =================================================================== -->
     <article id="view-ala5" class="ala-view hidden space-y-6">
-      <!-- Report Title Banner -->
+      <!-- Title Banner -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
         <div class="flex flex-wrap items-center gap-2 mb-3">
           <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 05</span>
-          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Technical Report</span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            Completed Technical Report
+          </span>
           <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
         </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
@@ -1322,7 +1509,6 @@ networks:
           High-performance cloud applications decouple edge caching, request routing, stateless compute pools, and data persistence so each layer scales independently under fluctuating workloads. Figure 1 illustrates the end-to-end elastic topology driven by closed-loop telemetry.
         </p>
 
-        <!-- Custom Inline SVG Architecture Diagram -->
         <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
           <svg viewBox="0 0 820 265" class="w-full h-auto block" role="img" aria-label="Cloud Performance Optimization and Auto-Scaling Reference Architecture">
             <defs>
@@ -1405,7 +1591,6 @@ networks:
 
       <!-- 2. Load Balancing & Auto-Scaling + 3. Golden Signals -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- 2. Load Balancing & Auto-Scaling -->
         <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
           <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
             2. Load Balancing &amp; Auto-Scaling Mechanisms
@@ -1423,7 +1608,6 @@ networks:
           </ul>
         </section>
 
-        <!-- 3. The Four Golden Signals -->
         <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
           <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
             3. Cloud Monitoring Metrics (The Four Golden Signals)
@@ -1449,7 +1633,7 @@ networks:
         </section>
       </div>
 
-      <!-- 4. Simulated Workload Scenario Evaluation (Visual Chart + Full Table) -->
+      <!-- 4. Simulated Workload Scenario Evaluation (Dual-Bar Chart + Comparison Table) -->
       <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
         <div>
           <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
@@ -1460,7 +1644,7 @@ networks:
           </p>
         </div>
 
-        <!-- Visual Comparison Bar Chart (SVG) -->
+        <!-- Dual-Bar Comparison Chart (Inline SVG) -->
         <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
           <svg viewBox="0 0 760 215" class="w-full h-auto max-h-56 block" role="img" aria-label="P99 Latency and Monthly Compute Cost Comparison Bar Chart">
             <!-- Left Chart: P99 Tail Latency (ms) -->
@@ -1471,22 +1655,18 @@ networks:
             <text x="42" y="103" text-anchor="end" font-size="10" fill="#475569">200</text>
             <text x="42" y="42" text-anchor="end" font-size="10" fill="#475569">410</text>
 
-            <!-- Bar 1: Static (85ms) -->
             <rect x="75" y="138" width="56" height="27" rx="4" fill="#64748b" />
             <text x="103" y="132" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">85 ms</text>
             <text x="103" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Static Fixed</text>
 
-            <!-- Bar 2: Reactive (410ms) -->
             <rect x="165" y="38" width="56" height="127" rx="4" fill="#e11d48" />
             <text x="193" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9f1239">410 ms</text>
             <text x="193" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Reactive ASG</text>
 
-            <!-- Bar 3: Predictive Hybrid (105ms) -->
             <rect x="255" y="132" width="56" height="33" rx="4" fill="#4f46e5" />
             <text x="283" y="126" text-anchor="middle" font-size="10.5" font-weight="700" fill="#312e81">105 ms</text>
             <text x="283" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Predictive Hybrid</text>
 
-            <!-- Center Divider -->
             <line x1="380" y1="15" x2="380" y2="195" stroke="#cbd5e1" stroke-width="1.2" />
 
             <!-- Right Chart: Monthly Compute Cost ($) -->
@@ -1497,17 +1677,14 @@ networks:
             <text x="427" y="103" text-anchor="end" font-size="10" fill="#475569">$750</text>
             <text x="427" y="42" text-anchor="end" font-size="10" fill="#475569">$1,440</text>
 
-            <!-- Bar 1: Static ($1,440) -->
             <rect x="460" y="38" width="56" height="127" rx="4" fill="#64748b" />
             <text x="488" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">$1,440</text>
             <text x="488" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Static Fixed</text>
 
-            <!-- Bar 2: Reactive ($310) -->
             <rect x="550" y="137" width="56" height="28" rx="4" fill="#0d9488" />
             <text x="578" y="131" text-anchor="middle" font-size="10.5" font-weight="700" fill="#115e59">$310</text>
             <text x="578" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Reactive ASG</text>
 
-            <!-- Bar 3: Predictive Hybrid ($245) -->
             <rect x="640" y="143" width="56" height="22" rx="4" fill="#4f46e5" />
             <text x="668" y="137" text-anchor="middle" font-size="10.5" font-weight="700" fill="#312e81">$245 (-83%)</text>
             <text x="668" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Predictive Hybrid</text>
@@ -1518,7 +1695,6 @@ networks:
           </svg>
         </div>
 
-        <!-- Quantitative Simulation Data Table -->
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
             <thead>
@@ -1607,7 +1783,7 @@ networks:
   </main>
 
   <!-- ===================================================================== -->
-  <!-- FOOTER (PRINT & SCREEN)                                               -->
+  <!-- INSTITUTIONAL FOOTER                                                  -->
   <!-- ===================================================================== -->
   <footer class="bg-white border-t border-slate-200 mt-auto py-4 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
@@ -1621,24 +1797,54 @@ networks:
   </footer>
 
   <!-- ===================================================================== -->
-  <!-- TOAST NOTIFICATION BANNER (NON-BLOCKING FEEDBACK, NO ALERT())         -->
+  <!-- FULL-SCREEN LIGHTBOX MODAL FOR SCREENSHOT INSPECTION                  -->
   <!-- ===================================================================== -->
-  <div id="toast-banner" class="no-print fixed bottom-5 right-5 z-50 hidden transform transition-all duration-200">
-    <div class="bg-navy-900 text-white px-4 py-3 rounded-xl shadow-lg border border-indigo-400/30 flex items-center gap-2.5 text-xs sm:text-sm font-medium">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
-      <span id="toast-message">Action completed</span>
+  <div
+    id="lightbox-modal"
+    onclick="closeLightbox(event)"
+    class="no-print fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-xs p-4 sm:p-6 flex items-center justify-center"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lightbox-caption"
+  >
+    <div class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex items-center justify-between gap-3 px-4 py-3 bg-slate-950 border-b border-slate-800">
+        <p id="lightbox-caption" class="text-xs sm:text-sm font-semibold text-slate-200 truncate">
+          Verification Screenshot
+        </p>
+        <button
+          type="button"
+          onclick="closeLightbox()"
+          class="px-3 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 cursor-pointer transition shrink-0"
+        >
+          Close ✕
+        </button>
+      </div>
+      <div class="p-3 sm:p-4 bg-slate-900 flex items-center justify-center max-h-[80vh] overflow-auto">
+        <img id="lightbox-img" src="" alt="Full-resolution verification capture" class="max-w-full max-h-[74vh] object-contain rounded-lg" />
+      </div>
     </div>
   </div>
 
   <!-- ===================================================================== -->
-  <!-- VANILLA JAVASCRIPT ROUTER & INTERACTIVE HELPERS                       -->
+  <!-- NON-BLOCKING TOAST NOTIFICATION (NO ALERT())                          -->
+  <!-- ===================================================================== -->
+  <div id="toast-banner" class="no-print fixed bottom-5 right-5 z-40 hidden">
+    <div class="bg-navy-900 text-white px-4 py-3 rounded-xl shadow-lg border border-indigo-400/30 flex items-center gap-2.5 text-xs sm:text-sm font-medium">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+      <span id="toast-message">Copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- VANILLA JAVASCRIPT ROUTER, CLIPBOARD & LIGHTBOX                       -->
   <!-- ===================================================================== -->
   <script>
     const VALID_VIEWS = ['home', 'ala1', 'ala2', 'ala3', 'ala4', 'ala5'];
-    let toastTimeout = null;
+    let toastTimer = null;
 
     /**
-     * Displays a clean non-blocking toast notification (replaces alert()).
+     * Shows a non-blocking toast notification.
      */
     function showToast(message) {
       const banner = document.getElementById('toast-banner');
@@ -1648,29 +1854,26 @@ networks:
       msgEl.textContent = message;
       banner.classList.remove('hidden');
 
-      if (toastTimeout) clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
         banner.classList.add('hidden');
-      }, 2800);
+      }, 2600);
     }
 
     /**
-     * Switches the active view and synchronizes URL hash + quick-nav state.
+     * Switches between Home Dashboard and ALA 1–5 views via URL hash routing.
      */
     function navigateTo(viewName, updateHash = true) {
       const target = VALID_VIEWS.includes(viewName) ? viewName : 'home';
 
-      // Hide all views
       VALID_VIEWS.forEach((v) => {
         const el = document.getElementById(`view-${v}`);
         if (el) el.classList.add('hidden');
       });
 
-      // Show selected view
-      const activeEl = document.getElementById(`view-${target}`);
-      if (activeEl) activeEl.classList.remove('hidden');
+      const activeView = document.getElementById(`view-${target}`);
+      if (activeView) activeView.classList.remove('hidden');
 
-      // Toggle quick-nav bar visibility
       const quickNav = document.getElementById('quick-nav-bar');
       if (quickNav) {
         if (target === 'home') {
@@ -1680,17 +1883,15 @@ networks:
         }
       }
 
-      // Highlight active quick-nav pill
-      document.querySelectorAll('.quick-pill').forEach((btn) => {
-        const btnTarget = btn.getAttribute('data-nav');
-        if (btnTarget === target) {
-          btn.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-bold border bg-indigo-600 text-white border-indigo-600 shadow-xs transition cursor-pointer';
+      document.querySelectorAll('.quick-pill').forEach((pill) => {
+        const pillTarget = pill.getAttribute('data-nav');
+        if (pillTarget === target) {
+          pill.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-bold border bg-indigo-600 text-white border-indigo-600 shadow-xs transition cursor-pointer';
         } else {
-          btn.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white text-slate-700 border-slate-200 hover:bg-slate-100 transition cursor-pointer';
+          pill.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white text-slate-700 border-slate-200 hover:bg-slate-100 transition cursor-pointer';
         }
       });
 
-      // Update URL hash cleanly
       if (updateHash && window.location.hash !== `#${target}`) {
         try {
           history.pushState(null, '', `#${target}`);
@@ -1699,29 +1900,26 @@ networks:
         }
       }
 
-      // Scroll smoothly to top for faculty review
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     /**
-     * Reads current location hash and renders the corresponding view.
+     * Reads URL hash on load or browser Back/Forward navigation.
      */
-    function handleHashRoute() {
-      const rawHash = (window.location.hash || '').replace('#', '').toLowerCase().trim();
-      const target = VALID_VIEWS.includes(rawHash) ? rawHash : 'home';
-      navigateTo(target, false);
+    function syncRouteFromHash() {
+      const hash = (window.location.hash || '').replace('#', '').toLowerCase().trim();
+      navigateTo(VALID_VIEWS.includes(hash) ? hash : 'home', false);
     }
 
     /**
-     * Copies code block text to clipboard using document.execCommand('copy') for iframe compatibility.
+     * Copies code block text reliably across standard browsers and sandboxed iframes.
      */
     function copyCodeBlock(elementId) {
       const codeEl = document.getElementById(elementId);
       if (!codeEl) return;
 
-      const text = codeEl.innerText;
       const textarea = document.createElement('textarea');
-      textarea.value = text;
+      textarea.value = codeEl.innerText;
       textarea.style.position = 'fixed';
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
@@ -1729,74 +1927,48 @@ networks:
 
       try {
         document.execCommand('copy');
-        showToast('Configuration code copied to clipboard');
+        showToast('Code copied to clipboard');
       } catch (err) {
-        showToast('Unable to copy automatically — please select and copy manually');
+        showToast('Please select and copy the code manually');
       } finally {
         document.body.removeChild(textarea);
       }
     }
 
     /**
-     * Updates the Live Render URL in ALA 1 and saves it to localStorage safely.
+     * Opens the full-screen Lightbox modal to inspect high-res screenshots.
      */
-    function updateAla1Url() {
-      const input = document.getElementById('ala1-url-input');
-      const link = document.getElementById('ala1-live-link');
-      if (!input || !link) return;
+    function openLightbox(imgSrc, captionText) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      const caption = document.getElementById('lightbox-caption');
+      if (!modal || !img || !caption) return;
 
-      const val = input.value.trim();
-      if (!val) {
-        showToast('Please enter a valid deployment URL first');
-        return;
-      }
-
-      const formatted = /^https?:\/\//i.test(val) ? val : `https://${val}`;
-      link.href = formatted;
-      link.textContent = formatted;
-
-      try {
-        localStorage.setItem('gmiu_ala1_live_url', formatted);
-      } catch (e) {
-        // Ignore storage restrictions in sandboxed environments
-      }
-
-      input.value = '';
-      showToast('ALA 1 live deployment URL updated');
+      img.src = imgSrc;
+      caption.textContent = captionText;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
 
     /**
-     * Allows attaching local screenshots into ALA 1 & ALA 2 preview slots for instant demo/PDF printing.
+     * Closes the Lightbox modal.
      */
-    function previewScreenshot(inputEl, containerId) {
-      const container = document.getElementById(containerId);
-      if (!inputEl.files || !inputEl.files[0] || !container) return;
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      if (!modal) return;
 
-      const file = inputEl.files[0];
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        container.innerHTML = `<img src="${e.target.result}" alt="Attached Verification Screenshot" class="w-full h-full object-contain rounded" />`;
-        showToast(`Loaded "${file.name}" into preview slot`);
-      };
-      reader.readAsDataURL(file);
+      modal.classList.add('hidden');
+      if (img) img.src = '';
+      document.body.style.overflow = '';
     }
 
-    // Initialize on load
-    window.addEventListener('DOMContentLoaded', () => {
-      // Restore saved ALA 1 URL if present
-      try {
-        const savedUrl = localStorage.getItem('gmiu_ala1_live_url');
-        const link = document.getElementById('ala1-live-link');
-        if (savedUrl && link) {
-          link.href = savedUrl;
-          link.textContent = savedUrl;
-        }
-      } catch (e) {}
-
-      handleHashRoute();
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
     });
 
-    window.addEventListener('hashchange', handleHashRoute);
+    window.addEventListener('DOMContentLoaded', syncRouteFromHash);
+    window.addEventListener('hashchange', syncRouteFromHash);
   </script>
 </body>
 </html>

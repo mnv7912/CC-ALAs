@@ -1,0 +1,1802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GMIU ALA Submission Portal | BETCE17336 - Cloud Computing</title>
+  <!-- Load Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Load Inter & JetBrains Mono Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+          colors: {
+            navy: {
+              850: '#152544',
+              900: '#0f1c36',
+              950: '#091122',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Smooth transitions for view switching */
+    .ala-view {
+      animation: fadeIn 0.22s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Print Styles for Clean PDF Export */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 14mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #0f172a !important;
+        font-size: 10.5pt !important;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .print-only {
+        display: block !important;
+      }
+
+      .print-shadow-none {
+        box-shadow: none !important;
+      }
+
+      .print-border-slate {
+        border-color: #cbd5e1 !important;
+      }
+
+      .print-container {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+
+      .avoid-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      table {
+        break-inside: auto;
+      }
+
+      tr {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      thead {
+        display: table-header-group;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-indigo-100 selection:text-indigo-900">
+
+  <!-- ===================================================================== -->
+  <!-- 1. PERSISTENT INSTITUTIONAL HEADER & STUDENT METADATA (PRINT-FRIENDLY) -->
+  <!-- ===================================================================== -->
+  <header class="bg-white border-b border-slate-200 shadow-sm print-shadow-none">
+    <!-- Top University Ribbon -->
+    <div class="bg-navy-900 text-white py-2.5 px-4 sm:px-6 lg:px-8 border-b border-navy-850">
+      <div class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div class="flex items-center gap-3">
+          <!-- Custom Academic Crest SVG -->
+          <div class="w-9 h-9 rounded-lg bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-indigo-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs sm:text-sm font-bold tracking-wide uppercase text-white">
+              Gyanmanjari Innovative University (GMIU), Bhavnagar
+            </p>
+            <p class="text-[11px] sm:text-xs text-slate-300">
+              Active Learning Activity (ALA) Digital Submission Portfolio
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-[11px] font-medium">
+          <span class="px-2.5 py-1 rounded-md bg-white/10 text-indigo-200 border border-white/10">
+            B.Tech IT • Semester 7
+          </span>
+          <span class="px-2.5 py-1 rounded-md bg-white/10 text-slate-200 border border-white/10">
+            Section: Class G
+          </span>
+          <span class="px-2.5 py-1 rounded-md bg-indigo-600/40 text-white border border-indigo-400/30">
+            Session: GMIU-2026-27 (ODD)
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Student & Course Verification Grid -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+        <!-- Student Name -->
+        <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Student Name</div>
+          <div class="text-sm font-bold text-slate-900 mt-0.5">Manav Bhadreshbhai Joshi</div>
+        </div>
+        <!-- Enrollment Number -->
+        <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Enrollment Number</div>
+          <div class="text-sm font-mono font-bold text-indigo-700 mt-0.5">20230905090512</div>
+        </div>
+        <!-- Subject Code -->
+        <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Subject Code</div>
+          <div class="text-sm font-mono font-bold text-slate-900 mt-0.5">BETCE17336</div>
+        </div>
+        <!-- Subject Name -->
+        <div class="bg-slate-50/90 border border-slate-200 rounded-xl px-3.5 py-2.5">
+          <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-500">Subject Name</div>
+          <div class="text-sm font-bold text-slate-900 mt-0.5">Cloud Computing</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- 2. PERSISTENT QUICK-NAV BAR (SHOWN WHEN INSIDE AN ALA, HIDDEN ON PRINT) -->
+  <!-- ===================================================================== -->
+  <nav id="quick-nav-bar" class="hidden no-print sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <!-- Back Button -->
+      <button
+        type="button"
+        onclick="navigateTo('home')"
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 transition cursor-pointer"
+      >
+        <span>← Back to All ALAs</span>
+      </button>
+
+      <!-- Quick ALA Switcher Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto py-0.5" role="tablist" aria-label="Quick ALA Navigation">
+        <button type="button" data-nav="ala1" onclick="navigateTo('ala1')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 1</button>
+        <button type="button" data-nav="ala2" onclick="navigateTo('ala2')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 2</button>
+        <button type="button" data-nav="ala3" onclick="navigateTo('ala3')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 3</button>
+        <button type="button" data-nav="ala4" onclick="navigateTo('ala4')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 4</button>
+        <button type="button" data-nav="ala5" onclick="navigateTo('ala5')" class="quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition cursor-pointer">ALA 5</button>
+      </div>
+
+      <!-- Print / Save as PDF Button -->
+      <button
+        type="button"
+        onclick="window.print()"
+        class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-sm transition cursor-pointer"
+      >
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6v-8z" />
+        </svg>
+        <span>Print / Save as PDF</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================================================================== -->
+  <!-- MAIN CONTENT CONTAINER                                                -->
+  <!-- ===================================================================== -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 print-container">
+
+    <!-- =================================================================== -->
+    <!-- LANDING DASHBOARD (#home) — 5 DEDICATED ALA BUTTONS                 -->
+    <!-- =================================================================== -->
+    <section id="view-home" class="ala-view space-y-6">
+      <!-- Overview Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-semibold mb-3">
+              <span>Faculty Evaluation Hub</span>
+              <span>•</span>
+              <span>5 Activities (10 Marks Each)</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              Cloud Computing Active Learning Activities
+            </h1>
+            <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+              Select any of the five dedicated Active Learning Activity (ALA) modules below to inspect architectural diagrams, comparative evaluations, source configurations, and analytical reports prepared for <strong class="text-slate-800">BETCE17336 – Cloud Computing</strong>.
+            </p>
+          </div>
+          <div class="flex flex-wrap sm:flex-nowrap gap-3 shrink-0">
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-3 text-center min-w-[120px]">
+              <div class="text-2xl font-extrabold text-emerald-700">3 / 3</div>
+              <div class="text-xs font-semibold text-emerald-800 mt-0.5">Reports Complete</div>
+            </div>
+            <div class="bg-sky-50 border border-sky-200 rounded-xl px-4 py-3 text-center min-w-[120px]">
+              <div class="text-2xl font-extrabold text-sky-700">2 / 2</div>
+              <div class="text-xs font-semibold text-sky-800 mt-0.5">Practicals Ready</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Dedicated Interactive ALA Button Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- BUTTON CARD 1: ALA 1 -->
+        <button
+          type="button"
+          onclick="navigateTo('ala1')"
+          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
+                ALA : 01
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                Practical Setup Ready
+              </span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Cloud Service Deployment
+            </h2>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Full-stack Python web application deployment on Render (Compute) integrated with Supabase PostgreSQL &amp; Object Storage, environment secrets, and live cloud telemetry.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Practical</span>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
+              Open ALA 1 →
+            </span>
+          </div>
+        </button>
+
+        <!-- BUTTON CARD 2: ALA 2 -->
+        <button
+          type="button"
+          onclick="navigateTo('ala2')"
+          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
+                ALA : 02
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+                Practical Setup Ready
+              </span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Virtualization Implementation
+            </h2>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Multi-container virtualization via Docker Compose running isolated Nginx, Python API, and Redis instances with strict CPU quotas, RAM caps, and bridge network isolation.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Practical</span>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
+              Open ALA 2 →
+            </span>
+          </div>
+        </button>
+
+        <!-- BUTTON CARD 3: ALA 3 -->
+        <button
+          type="button"
+          onclick="navigateTo('ala3')"
+          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
+                ALA : 03
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Completed Report
+              </span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Cloud Security Analysis (Review Activity)
+            </h2>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Comparative review of AWS, Azure, and GCP across IAM (RBAC/ABAC, STS), AES-256 envelope encryption, confidential computing, breach root-cause analysis, and Zero Trust controls.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Review Paper</span>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
+              Open ALA 3 →
+            </span>
+          </div>
+        </button>
+
+        <!-- BUTTON CARD 4: ALA 4 -->
+        <button
+          type="button"
+          onclick="navigateTo('ala4')"
+          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
+                ALA : 04
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Completed Report
+              </span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Cloud Risk &amp; SLA Evaluation (Industry Case Study)
+            </h2>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Enterprise case study benchmarking AWS SLAs against Azure and GCP, analyzing ISO 27001, SOC 2, DPDP Act 2023 compliance, SLA gaps, and NIST RMF risk mitigation.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Case Study</span>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
+              Open ALA 4 →
+            </span>
+          </div>
+        </button>
+
+        <!-- BUTTON CARD 5: ALA 5 -->
+        <button
+          type="button"
+          onclick="navigateTo('ala5')"
+          class="group text-left bg-white hover:bg-slate-50/70 border border-slate-200 hover:border-indigo-400 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between cursor-pointer focus:outline-none focus:ring-2 focus:ring-indigo-500 md:col-span-2 lg:col-span-1"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4">
+              <span class="inline-flex items-center justify-center px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">
+                ALA : 05
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                Completed Report
+              </span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">
+              Cloud Performance Optimization &amp; Auto-Scaling Analysis
+            </h2>
+            <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+              Technical analysis of L4/L7 load balancing, predictive vs. reactive auto-scaling, Golden Signals telemetry, 10× traffic surge simulation, and Edge/Fog integration.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-medium text-slate-500">Max Marks: 10 • Technical Report</span>
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-indigo-600 group-hover:bg-indigo-700 text-white text-xs font-semibold transition">
+              Open ALA 5 →
+            </span>
+          </div>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- VIEW: ALA 1 — CLOUD SERVICE DEPLOYMENT (PRACTICAL TEMPLATE)         -->
+    <!-- =================================================================== -->
+    <article id="view-ala1" class="ala-view hidden space-y-6">
+      <!-- Report Title Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 01</span>
+          <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">Practical Setup Ready</span>
+          <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Cloud Service Deployment: Full-Stack Web Application &amp; Managed Database Hosting
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">
+          Demonstration of PaaS Compute Hosting, Managed Cloud PostgreSQL &amp; Object Storage Integration, Secret Management, and Live Internet Accessibility.
+        </p>
+      </div>
+
+      <!-- 1. Live Deployed Application URL Card -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none avoid-break">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-slate-100">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">1. Live Deployed Application Endpoint</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Public HTTPS endpoint hosted on Render Cloud Web Service</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200 text-xs font-semibold self-start sm:self-auto">
+            TLS 1.3 Enabled • Auto-Deploy via GitHub
+          </span>
+        </div>
+
+        <div class="mt-4 bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1 flex-1">
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-500">Production URL</div>
+            <a id="ala1-live-link" href="https://gmiu-cloud-ala1-manav.onrender.com" target="_blank" rel="noopener noreferrer" class="text-sm sm:text-base font-mono font-semibold text-indigo-600 hover:underline break-all">
+              https://gmiu-cloud-ala1-manav.onrender.com
+            </a>
+            <div class="text-xs text-slate-500">Health Check Route: <code class="font-mono bg-white px-1.5 py-0.5 rounded border border-slate-200">/api/health</code> • Region: Singapore (ap-southeast-1)</div>
+          </div>
+
+          <!-- Interactive URL Updater (Hidden on Print) -->
+          <div class="no-print flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+            <input
+              id="ala1-url-input"
+              type="url"
+              placeholder="Paste live Render URL..."
+              class="px-3 py-2 text-xs font-mono bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 w-full sm:w-60"
+            />
+            <button
+              type="button"
+              onclick="updateAla1Url()"
+              class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition cursor-pointer shrink-0"
+            >
+              Update URL
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Cloud Architecture & Resource Configuration -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
+          2. Cloud Architecture &amp; Resource Configuration
+        </h2>
+
+        <!-- Inline SVG Cloud Deployment Diagram -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60">
+          <svg viewBox="0 0 760 190" class="w-full h-auto max-h-52 mx-auto block" role="img" aria-label="ALA 1 Cloud Service Deployment Architecture">
+            <defs>
+              <marker id="ala1-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+              </marker>
+            </defs>
+            <!-- User Browser -->
+            <rect x="16" y="55" width="130" height="76" rx="10" fill="#ffffff" stroke="#334155" stroke-width="1.5" />
+            <text x="81" y="86" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">End User Browser</text>
+            <text x="81" y="105" text-anchor="middle" font-size="10.5" fill="#475569">HTTPS / REST Client</text>
+
+            <!-- Render PaaS -->
+            <rect x="200" y="38" width="230" height="110" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.8" />
+            <text x="315" y="64" text-anchor="middle" font-size="12.5" font-weight="700" fill="#312e81">Render Cloud Web Service</text>
+            <text x="315" y="84" text-anchor="middle" font-size="11" fill="#3730a3">Python 3.11 + FastAPI / Gunicorn</text>
+            <rect x="220" y="98" width="190" height="36" rx="6" fill="#ffffff" stroke="#a5b4fc" stroke-width="1" />
+            <text x="315" y="120" text-anchor="middle" font-size="10" font-weight="600" fill="#1e293b">512 MB RAM • 0.5 Shared vCPU • Env Secrets</text>
+
+            <!-- Supabase PostgreSQL -->
+            <rect x="492" y="22" width="248" height="64" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="1.6" />
+            <text x="616" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">Supabase Managed PostgreSQL</text>
+            <text x="616" y="68" text-anchor="middle" font-size="10.5" fill="#047857">Relational Persistence • Connection Pooling</text>
+
+            <!-- Supabase Storage Bucket -->
+            <rect x="492" y="102" width="248" height="64" rx="10" fill="#f0f9ff" stroke="#0284c7" stroke-width="1.6" />
+            <text x="616" y="129" text-anchor="middle" font-size="12" font-weight="700" fill="#075985">Supabase Cloud Object Storage</text>
+            <text x="616" y="148" text-anchor="middle" font-size="10.5" fill="#0369a1">S3-Compatible File Bucket • Signed URLs</text>
+
+            <!-- Connectors -->
+            <line x1="146" y1="93" x2="196" y2="93" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
+            <line x1="430" y1="76" x2="488" y2="56" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
+            <line x1="430" y1="112" x2="488" y2="132" stroke="#334155" stroke-width="1.6" marker-end="url(#ala1-arrow)" />
+          </svg>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-2.5 px-3.5 rounded-tl-lg">Cloud Tier</th>
+                <th class="py-2.5 px-3.5">Provider &amp; Service</th>
+                <th class="py-2.5 px-3.5">Allocated Resources</th>
+                <th class="py-2.5 px-3.5 rounded-tr-lg">Management &amp; Security Controls</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200">
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Compute (PaaS)</td>
+                <td class="py-2.5 px-3.5">Render Web Service (Python Runtime)</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">0.5 vCPU • 512 MB RAM • Auto-TLS</td>
+                <td class="py-2.5 px-3.5">CI/CD GitHub Webhook deploy, automated health checks, zero-downtime restarts.</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Cloud Database</td>
+                <td class="py-2.5 px-3.5">Supabase Managed PostgreSQL 15</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">500 MB SSD • PgBouncer Pooler</td>
+                <td class="py-2.5 px-3.5">SSL-enforced connection string injected via encrypted environment variables.</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-semibold text-slate-900">Object Storage</td>
+                <td class="py-2.5 px-3.5">Supabase Storage Bucket</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">1 GB Object Quota • CDN Edge Cache</td>
+                <td class="py-2.5 px-3.5">Row-Level Security (RLS) policies and scoped API service role tokens.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 3. Core Application Source Code Snippet (app.py) -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-3 avoid-break">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">3. Core Cloud Application Source Code (<code class="font-mono text-indigo-700">app.py</code>)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">FastAPI service integrating cloud database persistence, storage upload, and runtime resource telemetry</p>
+          </div>
+          <button
+            type="button"
+            onclick="copyCodeBlock('code-ala1')"
+            class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold transition cursor-pointer"
+          >
+            <span>Copy Code</span>
+          </button>
+        </div>
+
+        <pre id="code-ala1" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>import os
+import time
+import psutil
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from supabase import create_client, Client
+
+app = FastAPI(title="GMIU Cloud Computing - ALA 1 Service")
+
+# Load cloud credentials securely from platform environment variables
+SUPABASE_URL = os.environ.get("SUPABASE_URL", "")
+SUPABASE_KEY = os.environ.get("SUPABASE_SERVICE_KEY", "")
+supabase: Client | None = create_client(SUPABASE_URL, SUPABASE_KEY) if SUPABASE_URL else None
+
+class NotePayload(BaseModel):
+    student_enrollment: str = "20230905090512"
+    title: str
+    content: str
+
+@app.get("/api/health")
+def health_check():
+    """Demonstrates live cloud compute & resource monitoring metrics."""
+    process = psutil.Process(os.getpid())
+    return {
+        "status": "healthy",
+        "student": "Manav Bhadreshbhai Joshi",
+        "enrollment": "20230905090512",
+        "course": "BETCE17336 - Cloud Computing",
+        "memory_mb": round(process.memory_info().rss / (1024 * 1024), 2),
+        "cpu_percent": psutil.cpu_percent(interval=0.1),
+        "timestamp": time.time(),
+    }
+
+@app.post("/api/records")
+def create_cloud_record(payload: NotePayload):
+    """Persists structured record to managed cloud PostgreSQL database."""
+    if not supabase:
+        raise HTTPException(status_code=503, detail="Cloud database environment not configured")
+    response = supabase.table("ala_submissions").insert(payload.model_dump()).execute()
+    return {"message": "Stored in Supabase PostgreSQL", "data": response.data}</code></pre>
+      </div>
+
+      <!-- 4. Deployment & Cloud Dashboard Screenshots Gallery Slots -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">4. Deployment &amp; Cloud Dashboard Screenshots</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Upload local captures below to preview live before exporting PDF</p>
+          </div>
+          <span class="text-xs font-semibold text-slate-500">3 Verification Captures</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Slot 1 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 1.1: Live Running Web App</span>
+                <span class="text-[11px] font-mono text-indigo-600">HTTPS UI</span>
+              </div>
+              <div id="preview-ala1-1" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="4" width="18" height="16" rx="2" />
+                  <path d="M3 9h18M8 14l2.5 2.5L16 11" />
+                </svg>
+                <p class="text-xs font-medium text-slate-600">Browser screenshot showing live Render URL &amp; JSON/UI response</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-1')" />
+            </label>
+          </div>
+
+          <!-- Slot 2 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 1.2: Render Compute Metrics</span>
+                <span class="text-[11px] font-mono text-indigo-600">CPU / RAM</span>
+              </div>
+              <div id="preview-ala1-2" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M4 19h16M6 16V9m6 7V5m6 11v-4" />
+                </svg>
+                <p class="text-xs font-medium text-slate-600">Render dashboard showing active deployment logs, memory &amp; CPU usage</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-2')" />
+            </label>
+          </div>
+
+          <!-- Slot 3 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 1.3: Supabase DB &amp; Storage</span>
+                <span class="text-[11px] font-mono text-indigo-600">Persistence</span>
+              </div>
+              <div id="preview-ala1-3" class="aspect-video rounded-lg bg-white border border-slate-200 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <svg class="w-8 h-8 text-slate-400 mb-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <ellipse cx="12" cy="6" rx="8" ry="3" />
+                  <path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6" />
+                </svg>
+                <p class="text-xs font-medium text-slate-600">Supabase table rows &amp; storage bucket verification screenshot</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala1-3')" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- =================================================================== -->
+    <!-- VIEW: ALA 2 — VIRTUALIZATION IMPLEMENTATION (PRACTICAL TEMPLATE)    -->
+    <!-- =================================================================== -->
+    <article id="view-ala2" class="ala-view hidden space-y-6">
+      <!-- Report Title Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 02</span>
+          <span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 border border-sky-200 text-xs font-semibold">Practical Setup Ready</span>
+          <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Virtualization Implementation: Multi-Container Resource Allocation &amp; Network Isolation
+        </h1>
+        <p class="text-sm sm:text-base text-slate-600 mt-2">
+          OS-Level Virtualization using Docker Engine &amp; Docker Compose orchestrating three isolated service containers with cgroups CPU/RAM limits, persistent volumes, and segmented bridge networks.
+        </p>
+      </div>
+
+      <!-- 1. Resource Allocation Matrix Table -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">
+          1. Virtual Instance Resource Allocation &amp; Isolation Matrix
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-2.5 px-3.5 rounded-tl-lg">Container Name</th>
+                <th class="py-2.5 px-3.5">Base Image</th>
+                <th class="py-2.5 px-3.5">CPU Quota</th>
+                <th class="py-2.5 px-3.5">RAM Limit</th>
+                <th class="py-2.5 px-3.5">Storage Volume</th>
+                <th class="py-2.5 px-3.5 rounded-tr-lg">Network Isolation</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200">
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-nginx-proxy</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">nginx:1.27-alpine</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.25 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">128 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Read-only config bind (<code class="font-mono">./nginx.conf:ro</code>)</td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono">frontend_net</span> (Public Port 8080)</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-python-api</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">python:3.11-slim</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.50 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">256 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Named volume <code class="font-mono">api_logs:/var/log/app</code></td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200 font-mono">frontend_net</span> + <span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span></td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-mono font-bold text-slate-900">gmiu-redis-cache</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">redis:7.2-alpine</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">0.25 vCPU</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs text-indigo-700 font-semibold">128 MB</td>
+                <td class="py-2.5 px-3.5 text-xs">Persistent AOF volume <code class="font-mono">redis_data:/data</code></td>
+                <td class="py-2.5 px-3.5 text-xs"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-mono">backend_net</span> (Internal Only — Isolated)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 2. Complete docker-compose.yml Configuration -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-3 avoid-break">
+        <div class="flex items-center justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">2. Multi-Container Orchestration (<code class="font-mono text-indigo-700">docker-compose.yml</code>)</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Enforces cgroups CPU/memory ceilings, storage persistence, and strict east-west network segmentation</p>
+          </div>
+          <button
+            type="button"
+            onclick="copyCodeBlock('code-ala2')"
+            class="no-print inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-xs font-semibold transition cursor-pointer"
+          >
+            <span>Copy YAML</span>
+          </button>
+        </div>
+
+        <pre id="code-ala2" class="bg-slate-900 text-slate-100 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed"><code>version: "3.9"
+
+services:
+  # 1. Edge Reverse Proxy Container (Public DMZ Network)
+  nginx-proxy:
+    image: nginx:1.27-alpine
+    container_name: gmiu-nginx-proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    cpus: "0.25"
+    mem_limit: 128m
+    networks:
+      - frontend_net
+    depends_on:
+      - python-api
+
+  # 2. Application Logic Container (Bridges Frontend & Private Backend)
+  python-api:
+    build: ./api
+    container_name: gmiu-python-api
+    environment:
+      - REDIS_HOST=gmiu-redis-cache
+      - STUDENT_ID=20230905090512
+    volumes:
+      - api_logs:/var/log/app
+    cpus: "0.50"
+    mem_limit: 256m
+    networks:
+      - frontend_net
+      - backend_net
+    depends_on:
+      - redis-cache
+
+  # 3. Isolated In-Memory Data Store (Strictly Internal Network)
+  redis-cache:
+    image: redis:7.2-alpine
+    container_name: gmiu-redis-cache
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "96mb"]
+    volumes:
+      - redis_data:/data
+    cpus: "0.25"
+    mem_limit: 128m
+    networks:
+      - backend_net
+
+volumes:
+  api_logs:
+  redis_data:
+
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
+    internal: true  # Blocks direct external internet & frontend_net access</code></pre>
+      </div>
+
+      <!-- 3. Execution & Terminal Verification Screenshots -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">3. Execution, <code class="font-mono text-indigo-700">docker stats</code> &amp; Network Isolation Captures</h2>
+            <p class="text-xs text-slate-500 mt-0.5">Attach local terminal screenshots demonstrating live resource quotas and container isolation</p>
+          </div>
+          <span class="text-xs font-semibold text-slate-500">3 Terminal Captures</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Slot 1 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 2.1: <code class="font-mono">docker compose up -d</code></span>
+                <span class="text-[11px] font-mono text-indigo-600">Provisioning</span>
+              </div>
+              <div id="preview-ala2-1" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <code class="text-[11px] font-mono text-emerald-400">$ docker compose ps</code>
+                <p class="text-[11px] text-slate-300 mt-1.5">Terminal capture showing all 3 containers running in healthy state</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-1')" />
+            </label>
+          </div>
+
+          <!-- Slot 2 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 2.2: <code class="font-mono">docker stats</code> Quotas</span>
+                <span class="text-[11px] font-mono text-indigo-600">CPU &amp; MEM</span>
+              </div>
+              <div id="preview-ala2-2" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <code class="text-[11px] font-mono text-sky-400">$ docker stats --no-stream</code>
+                <p class="text-[11px] text-slate-300 mt-1.5">Verifies 128MiB / 256MiB memory limits and CPU utilization caps</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-2')" />
+            </label>
+          </div>
+
+          <!-- Slot 3 -->
+          <div class="border border-dashed border-slate-300 rounded-xl p-4 bg-slate-50 flex flex-col justify-between avoid-break">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-slate-800">Capture 2.3: Network Isolation Test</span>
+                <span class="text-[11px] font-mono text-indigo-600">Namespace</span>
+              </div>
+              <div id="preview-ala2-3" class="aspect-video rounded-lg bg-slate-900 border border-slate-700 flex flex-col items-center justify-center p-3 text-center overflow-hidden">
+                <code class="text-[11px] font-mono text-amber-400">$ docker exec gmiu-nginx-proxy ping gmiu-redis-cache</code>
+                <p class="text-[11px] text-slate-300 mt-1.5">Proves frontend proxy cannot reach isolated backend Redis container</p>
+              </div>
+            </div>
+            <label class="no-print mt-3 block text-center px-3 py-1.5 rounded-lg bg-white hover:bg-slate-100 border border-slate-300 text-xs font-semibold text-slate-700 cursor-pointer transition">
+              <span>Attach Screenshot</span>
+              <input type="file" accept="image/*" class="hidden" onchange="previewScreenshot(this, 'preview-ala2-3')" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- =================================================================== -->
+    <!-- VIEW: ALA 3 — CLOUD SECURITY ANALYSIS (COMPLETED REVIEW PAPER)      -->
+    <!-- =================================================================== -->
+    <article id="view-ala3" class="ala-view hidden space-y-6">
+      <!-- Report Title Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 03</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Review Paper</span>
+          <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+          Comparative Analysis of Cloud Security Architectures: IAM, Cryptography, and Data Protection Across Major CSPs
+        </h1>
+        <p class="text-sm text-slate-600 mt-2">
+          Review Activity evaluating Identity and Access Management, Envelope Encryption, Data Protection Controls, Real-World Cloud Breaches, and Zero Trust Best Practices.
+        </p>
+      </div>
+
+      <!-- 1. Abstract -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none avoid-break">
+        <div class="bg-indigo-50/70 border-l-4 border-indigo-600 rounded-r-xl p-4 sm:p-5">
+          <h2 class="text-base font-bold text-indigo-950 uppercase tracking-wide mb-2">1. Abstract</h2>
+          <p class="text-sm text-slate-700 leading-relaxed">
+            Enterprise migration to public cloud infrastructure shifts security engineering from static network-perimeter defense to identity-centric, software-defined governance. Operating under the <strong>Shared Responsibility Model</strong>, Cloud Service Providers (CSPs) secure the underlying physical facilities, virtualization hypervisors, and global backbone networks (<em>security of the cloud</em>), whereas tenant organizations remain accountable for Identity and Access Management (IAM), cryptographic key governance, and data classification (<em>security in the cloud</em>). This review paper evaluates <strong>Amazon Web Services (AWS)</strong> as the primary reference architecture—benchmarked against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>—across IAM models, encryption protocols, data protection controls, real-world breach root causes, and Zero Trust best practices.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. Core Security Architecture Analysis (Reference Platform: AWS) -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          2. Core Security Architecture Analysis (Reference Platform: AWS)
+        </h2>
+
+        <!-- A. IAM -->
+        <div class="space-y-2 avoid-break">
+          <h3 class="text-base font-bold text-indigo-800">2.1 Identity and Access Management (IAM)</h3>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong>Hybrid RBAC &amp; ABAC Authorization:</strong> Combines Role-Based Access Control (RBAC) with Attribute-Based Access Control (ABAC) using dynamic session tags and JSON policy conditions such as <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:PrincipalTag</code> and <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded border border-slate-200">aws:SourceIp</code>, allowing fine-grained access control without policy sprawl.
+            </li>
+            <li>
+              <strong>Short-Lived Federated Credentials:</strong> Eliminates hardcoded static API access keys by integrating enterprise Identity Providers via <strong>SAML 2.0</strong> and <strong>OpenID Connect (OIDC)</strong>. The <strong>AWS Security Token Service (STS)</strong> issues temporary, auto-rotating credentials scoped to bounded session durations.
+            </li>
+            <li>
+              <strong>Organizational Guardrails &amp; Evaluation Logic:</strong> Enforces multi-account permission ceilings via <strong>Service Control Policies (SCPs)</strong> and <strong>Permission Boundaries</strong>. Policy evaluation strictly defaults to <em>implicit deny</em>, while any <em>explicit deny</em> overrides all allow statements.
+            </li>
+          </ul>
+        </div>
+
+        <!-- B. Encryption Techniques -->
+        <div class="space-y-2 avoid-break">
+          <h3 class="text-base font-bold text-indigo-800">2.2 Cryptographic Controls &amp; Encryption Techniques</h3>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong>Data at Rest &amp; Envelope Encryption:</strong> Standardizes on <strong>AES-256-GCM</strong> via <strong>AWS Key Management Service (KMS)</strong> backed by FIPS 140-3 Level 3 validated Hardware Security Modules (HSMs). Using <em>envelope encryption</em>, storage services encrypt large payloads locally with a unique plaintext <strong>Data Key</strong>, which is itself encrypted by a root <strong>Customer-Managed Key (CMK)</strong> and stored alongside the ciphertext.
+            </li>
+            <li>
+              <strong>Data in Transit:</strong> Enforces <strong>TLS 1.3</strong> with Perfect Forward Secrecy across all public API endpoints, complemented by automatic hardware-accelerated encryption between AWS Nitro-based EC2 compute instances inside VPCs.
+            </li>
+            <li>
+              <strong>Flexible Key Sovereignty:</strong> Supports CSP-managed keys, Customer-Managed Keys (CMKs) with automated annual rotation, <strong>Bring Your Own Key (BYOK)</strong> imported from on-premise HSMs, and <strong>Hold Your Own Key (HYOK)</strong> via AWS KMS External Key Store (XKS) for strict regulatory sovereignty.
+            </li>
+          </ul>
+        </div>
+
+        <!-- C. Data Protection Mechanisms -->
+        <div class="space-y-2 avoid-break">
+          <h3 class="text-base font-bold text-indigo-800">2.3 Data Protection &amp; Confidential Computing Mechanisms</h3>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong>Storage Access Guardrails &amp; WORM Immutability:</strong> Account-level <strong>S3 Block Public Access</strong> overrides permissive bucket ACLs, while <strong>S3 Object Lock</strong> enforces Write-Once-Read-Many (WORM) retention in Compliance Mode to prevent ransomware deletion.
+            </li>
+            <li>
+              <strong>Automated Data Loss Prevention (DLP):</strong> <strong>Amazon Macie</strong> continuously applies machine-learning classifiers across S3 buckets to discover exposed PII, financial records, and leaked credentials.
+            </li>
+            <li>
+              <strong>Confidential Computing in Use:</strong> <strong>AWS Nitro Enclaves</strong> create isolated, hardened vCPU and memory partitions without persistent storage or external networking, protecting sensitive workloads <em>in use</em> from host operating system inspection.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 3. Comparative Security Matrix Table -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          3. Comparative Security Matrix: AWS vs. Microsoft Azure vs. Google Cloud Platform
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3 px-3.5 w-1/5 rounded-tl-lg">Security Dimension</th>
+                <th class="py-3 px-3.5 w-[26.6%]">Amazon Web Services (AWS)</th>
+                <th class="py-3 px-3.5 w-[26.6%]">Microsoft Azure</th>
+                <th class="py-3 px-3.5 w-[26.6%] rounded-tr-lg">Google Cloud Platform (GCP)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200 text-slate-700">
+              <tr class="bg-white">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Identity Provider &amp; IAM</td>
+                <td class="py-3 px-3.5">AWS IAM, IAM Identity Center, STS temporary tokens, SCPs &amp; Permission Boundaries.</td>
+                <td class="py-3 px-3.5">Microsoft Entra ID, Conditional Access policies &amp; Privileged Identity Management (JIT).</td>
+                <td class="py-3 px-3.5">Cloud IAM, Workforce Identity Federation &amp; hierarchical Organization Policy constraints.</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Key Management (HSM)</td>
+                <td class="py-3 px-3.5">AWS KMS (FIPS 140-3 L3 HSMs), CloudHSM &amp; KMS External Key Store (HYOK).</td>
+                <td class="py-3 px-3.5">Azure Key Vault &amp; Managed HSM (single-tenant FIPS 140-2/3 validated pools).</td>
+                <td class="py-3 px-3.5">Cloud KMS, Cloud HSM &amp; Cloud EKM (default encryption at rest enabled universally).</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Data Loss Prevention (DLP)</td>
+                <td class="py-3 px-3.5">Amazon Macie (ML-driven S3 sensitive data discovery &amp; alerting).</td>
+                <td class="py-3 px-3.5">Microsoft Purview Information Protection across Azure storage &amp; M365.</td>
+                <td class="py-3 px-3.5">Sensitive Data Protection (Cloud DLP) with inline redaction &amp; tokenization APIs.</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-3 px-3.5 font-bold text-slate-900">DDoS &amp; Edge Protection</td>
+                <td class="py-3 px-3.5">AWS Shield (Standard &amp; Advanced) integrated with AWS WAF &amp; CloudFront.</td>
+                <td class="py-3 px-3.5">Azure DDoS Protection paired with Azure Front Door Web Application Firewall.</td>
+                <td class="py-3 px-3.5">Google Cloud Armor operating on Google’s global anycast edge network.</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-3 px-3.5 font-bold text-slate-900">CSPM / Threat Detection</td>
+                <td class="py-3 px-3.5">AWS Security Hub (posture) &amp; Amazon GuardDuty (ML threat detection).</td>
+                <td class="py-3 px-3.5">Microsoft Defender for Cloud with workload protection &amp; Sentinel SIEM.</td>
+                <td class="py-3 px-3.5">Security Command Center (SCC) paired with Google Chronicle SecOps.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 4. Real-World Cloud Breach Scenarios & Root Cause Analysis -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          4. Real-World Cloud Breach Scenarios &amp; Root Cause Analysis
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Breach 1 -->
+          <div class="border border-rose-200 bg-rose-50/40 rounded-xl p-5 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-rose-700">Case 1 • SSRF &amp; IAM Over-Privilege</span>
+              <span class="px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-mono text-xs font-bold">2019</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Capital One Data Breach</h3>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong>Attack Vector:</strong> An attacker exploited a misconfigured ModSecurity WAF running on an AWS EC2 instance to execute a <strong>Server-Side Request Forgery (SSRF)</strong> attack against the EC2 Instance Metadata Service (<strong>IMDSv1</strong> at <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">169.254.169.254</code>), extracting temporary IAM role credentials.
+            </p>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong>Impact &amp; Root Cause:</strong> Overly permissive IAM permissions (<code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:ListBucket</code>, <code class="font-mono text-xs bg-white px-1 rounded border border-rose-200">s3:GetObject</code>) allowed exfiltration of <strong>100M+ customer records</strong>. Root cause: lack of least-privilege IAM scoping and reliance on unauthenticated IMDSv1.
+            </p>
+          </div>
+
+          <!-- Breach 2 -->
+          <div class="border border-amber-200 bg-amber-50/40 rounded-xl p-5 space-y-2.5">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-800">Case 2 • Cloud Misconfiguration</span>
+              <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-mono text-xs font-bold">2023</span>
+            </div>
+            <h3 class="text-base font-bold text-slate-900">Toyota Connected Cloud Exposure</h3>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong>Attack Vector:</strong> A cloud database and storage environment remained publicly accessible without authentication for nearly a decade due to improper access control lists (ACLs) and missing configuration drift alerts.
+            </p>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <strong>Impact &amp; Root Cause:</strong> Exposure of approximately <strong>2.15 million vehicle location histories</strong> and terminal identifiers. Root cause: absence of continuous Cloud Security Posture Management (CSPM) and automated public-access guardrails.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Cloud Security Best Practices & 6. References -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <div class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+            5. Cloud Security Best Practices (Defense-in-Depth)
+          </h2>
+          <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li><strong>Enforce IMDSv2 Session Tokens:</strong> Mandate session-oriented <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">PUT</code> token headers with restricted hop limits across all EC2 instances to neutralize SSRF metadata credential theft.</li>
+            <li><strong>Zero Trust &amp; Least Privilege IAM:</strong> Replace long-lived IAM users with federated OIDC roles, enforce FIDO2 MFA, and continuously prune unused permissions with <strong>IAM Access Analyzer</strong>.</li>
+            <li><strong>Shift-Left Infrastructure as Code (IaC) Scanning:</strong> Integrate static policy scanners (<code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">Checkov</code>, <code class="font-mono text-xs bg-slate-100 px-1.5 py-0.5 rounded">tfsec</code>) inside CI/CD pipelines to block open security groups or unencrypted buckets prior to deployment.</li>
+            <li><strong>Immutable Centralized Audit Trails:</strong> Stream all API events (AWS CloudTrail / Azure Activity Logs) into a centralized, WORM-locked Security Log Archive account isolated from production administrators.</li>
+          </ol>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 space-y-2">
+          <h2 class="text-base font-bold text-slate-900 uppercase tracking-wider">6. References</h2>
+          <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600">
+            <li>NIST Special Publication 800-144, <em>Guidelines on Security and Privacy in Public Cloud Computing</em>, U.S. Department of Commerce.</li>
+            <li>Amazon Web Services, <em>AWS Security Best Practices &amp; Shared Responsibility Model Whitepaper</em>, 2025.</li>
+            <li>Cloud Security Alliance (CSA), <em>Cloud Controls Matrix (CCM) v4.0</em>.</li>
+            <li>The MITRE Corporation, <em>MITRE ATT&amp;CK® Enterprise Cloud Matrix (IaaS / SaaS)</em>.</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+
+    <!-- =================================================================== -->
+    <!-- VIEW: ALA 4 — CLOUD RISK & SLA EVALUATION (INDUSTRY CASE STUDY)     -->
+    <!-- =================================================================== -->
+    <article id="view-ala4" class="ala-view hidden space-y-6">
+      <!-- Report Title Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 04</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Case Study</span>
+          <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+          Enterprise SLA Evaluation, Risk Management, and Compliance Framework Analysis: An AWS Industry Case Study
+        </h1>
+        <p class="text-sm text-slate-600 mt-2">
+          Structured Analytical Report benchmarking Service Level Agreements, Regulatory Compliance Attestations, SLA Gaps, and NIST RMF Risk Mitigation across AWS, Azure, and GCP.
+        </p>
+      </div>
+
+      <!-- 1. Case Study Overview -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3 mb-3">
+          1. Case Study Overview
+        </h2>
+        <p class="text-sm text-slate-700 leading-relaxed">
+          Mission-critical enterprises running financial transactions, healthcare platforms, and large-scale digital services depend on hyperscale Cloud Service Providers (CSPs) for continuous availability and regulatory compliance. This case study evaluates <strong>Amazon Web Services (AWS)</strong> as a primary enterprise cloud provider, benchmarking its contractual Service Level Agreements (SLAs), service credit tiers, regulatory compliance frameworks, and operational risk profile against <strong>Microsoft Azure</strong> and <strong>Google Cloud Platform (GCP)</strong>.
+        </p>
+      </section>
+
+      <!-- 2. Multi-Provider SLA Comparison Table -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          2. Multi-Provider SLA Comparison Matrix
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3 px-3.5 w-1/4 rounded-tl-lg">Service Category / Metric</th>
+                <th class="py-3 px-3.5 w-1/4">Amazon Web Services (AWS)</th>
+                <th class="py-3 px-3.5 w-1/4">Microsoft Azure</th>
+                <th class="py-3 px-3.5 w-1/4 rounded-tr-lg">Google Cloud (GCP)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200 text-slate-700">
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Compute (Multi-AZ / Zone)</td>
+                <td class="py-2.5 px-3.5 font-semibold text-emerald-700">99.99% (EC2 Multi-AZ)</td>
+                <td class="py-2.5 px-3.5 font-semibold text-emerald-700">99.99% (VMs in 2+ Zones)</td>
+                <td class="py-2.5 px-3.5 font-semibold text-emerald-700">99.99% (Compute Multi-Zone)</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Single-Instance Compute</td>
+                <td class="py-2.5 px-3.5">99.5% (Single EC2 Instance)</td>
+                <td class="py-2.5 px-3.5">99.9% (Premium SSD / Ultra)</td>
+                <td class="py-2.5 px-3.5">99.5% (Single Compute VM)</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Object Storage</td>
+                <td class="py-2.5 px-3.5">99.9% (S3 Standard)</td>
+                <td class="py-2.5 px-3.5">99.9% (Hot Tier Blob Storage)</td>
+                <td class="py-2.5 px-3.5">99.95% (Multi-Regional)</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Managed Relational DB</td>
+                <td class="py-2.5 px-3.5">99.95% (RDS Multi-AZ)</td>
+                <td class="py-2.5 px-3.5">99.99% (Azure SQL Business Critical)</td>
+                <td class="py-2.5 px-3.5">99.95% (Cloud SQL High Availability)</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Max Allowed Downtime / Mo</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">4.38 min (@ 99.99%)<br>43.8 min (@ 99.9%)</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">4.38 min (@ 99.99%)<br>43.8 min (@ 99.9%)</td>
+                <td class="py-2.5 px-3.5 font-mono text-xs">4.38 min (@ 99.99%)<br>21.9 min (@ 99.95%)</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3.5 font-bold text-slate-900">Service Credit Tiers</td>
+                <td class="py-2.5 px-3.5 text-xs">10% (&lt;99.99%), 30% (&lt;99.0%), 100% (&lt;95.0%)</td>
+                <td class="py-2.5 px-3.5 text-xs">10% (&lt;99.99%), 25% (&lt;99.0%), 100% (&lt;95.0%)</td>
+                <td class="py-2.5 px-3.5 text-xs">10% (&lt;99.99%), 25% (&lt;99.0%), 50% (&lt;95.0%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 3. Compliance Frameworks & 4. Critical SLA Gaps -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- 3. Compliance Frameworks -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
+            3. Compliance Frameworks &amp; Regulatory Alignment
+          </h2>
+          <ul class="space-y-3 text-sm text-slate-700 leading-relaxed">
+            <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block">ISO/IEC 27001 &amp; ISO/IEC 27017</strong>
+              Third-party audited Information Security Management System (ISMS) and cloud-specific security controls attested via AWS Artifact.
+            </li>
+            <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block">SOC 1 / SOC 2 Type II</strong>
+              Continuous validation of operational effectiveness across Security, Availability, Processing Integrity, and Confidentiality trust criteria.
+            </li>
+            <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block">DPDP Act 2023 (India) &amp; GDPR (EU)</strong>
+              Enforces strict regional data residency in <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-1</code> (Mumbai) and <code class="font-mono text-xs bg-white px-1 rounded border">ap-south-2</code> (Hyderabad), Data Processing Addendums (DPAs), and cryptographic right-to-erasure controls.
+            </li>
+            <li class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <strong class="text-slate-900 block">PCI-DSS v4.0 &amp; HIPAA</strong>
+              Level 1 PCI Service Provider attestation and HIPAA Business Associate Addendum (BAA) for regulated FinTech and Healthcare workloads.
+            </li>
+          </ul>
+        </section>
+
+        <!-- 4. Critical SLA Gaps Identified -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
+            4. Critical SLA Gaps Identified
+          </h2>
+          <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong class="text-slate-900">Asymmetric Financial Liability:</strong> Service credits are strictly capped at 100% of the affected service’s monthly infrastructure fee, excluding downstream business revenue loss, customer churn, or regulatory fines.
+            </li>
+            <li>
+              <strong class="text-slate-900">Strict Multi-AZ Preconditions:</strong> AWS’s 99.99% EC2 SLA applies <em>only</em> when workloads span two or more Availability Zones; single-AZ deployments receive zero SLA credit protection during zone-level outages.
+            </li>
+            <li>
+              <strong class="text-slate-900">Burden of Proof on the Tenant:</strong> Credits are non-automatic—customers must collect independent outage logs and file formal claims within two billing cycles.
+            </li>
+            <li>
+              <strong class="text-slate-900">Broad Exclusions &amp; Composite Decay:</strong> Excludes <em>Force Majeure</em>, external DDoS floods, and tenant misconfigurations. Furthermore, chaining four 99.99%–99.9% services in series reduces composite availability to <strong>99.83%</strong> (~74.5 min/mo downtime).
+            </li>
+          </ol>
+        </section>
+      </div>
+
+      <!-- 5. Risk Assessment Matrix & Standards-Based Mitigation -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          5. Risk Assessment Matrix &amp; Standards-Based Mitigation (NIST RMF / ISO 31000)
+        </h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3 px-3.5 w-1/4 rounded-tl-lg">Identified Risk</th>
+                <th class="py-3 px-3.5 w-[13%]">Likelihood</th>
+                <th class="py-3 px-3.5 w-[13%]">Impact</th>
+                <th class="py-3 px-3.5 w-[49%] rounded-tr-lg">Mitigation Strategy (NIST SP 800-37 / ISO 31000)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200 text-slate-700">
+              <tr class="bg-white">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Regional Control-Plane Outage</td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold">Medium</span></td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold">Critical</span></td>
+                <td class="py-3 px-3.5">Implement Active-Active Multi-Region routing via Route 53 DNS failover and scheduled chaos engineering tests (NIST SP 800-34).</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Vendor Lock-In &amp; Egress Fees</td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 text-xs font-semibold">High</span></td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">High</span></td>
+                <td class="py-3 px-3.5">Containerize workloads using Kubernetes/OCI standards, provision declaratively with Terraform IaC, and use S3-compatible abstractions.</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Data Residency / Compliance Drift</td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-xs font-semibold">Medium</span></td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold">High</span></td>
+                <td class="py-3 px-3.5">Enforce AWS Organizations Region-Deny SCPs restricting resource creation strictly to <code class="font-mono text-xs bg-slate-100 px-1 rounded">ap-south-1</code> (Mumbai).</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-3 px-3.5 font-bold text-slate-900">Shared Responsibility Misalignment</td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 text-xs font-semibold">High</span></td>
+                <td class="py-3 px-3.5"><span class="px-2 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 text-xs font-bold">Critical</span></td>
+                <td class="py-3 px-3.5">Maintain a formal service-level RACI Matrix and enforce continuous compliance posture checks via AWS Config rules.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 6. Strategic Recommendations & 7. References -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <div class="space-y-2.5">
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+            6. Strategic Recommendations
+          </h2>
+          <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 leading-relaxed">
+            <li><strong>Negotiate Custom Enterprise Discount Programs (EDPs):</strong> High-spend enterprises should negotiate proactive automated SLA credit triggers and explicit RTO/RPO contractual commitments.</li>
+            <li><strong>Deploy Independent Synthetic Uptime Probes:</strong> Operate external synthetic monitors (Prometheus Blackbox Exporter / Datadog Synthetics) to record immutable uptime evidence independent of CSP status dashboards.</li>
+            <li><strong>Maintain Tested Multi-Cloud Exit Portability:</strong> Conduct annual disaster-recovery exit drills verifying encrypted backup restoration on a secondary CSP within target RTO windows.</li>
+          </ul>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 space-y-2">
+          <h2 class="text-base font-bold text-slate-900 uppercase tracking-wider">7. References</h2>
+          <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600">
+            <li>Amazon Web Services, <em>AWS Compute, Amazon S3, and Amazon RDS Service Level Agreements</em>, 2025.</li>
+            <li>Microsoft Corporation, <em>Service Level Agreements (SLA) Summary for Microsoft Online Services and Azure</em>, 2025.</li>
+            <li>NIST Special Publication 800-37 Rev. 2, <em>Risk Management Framework for Information Systems and Organizations</em>.</li>
+            <li>Ministry of Electronics and Information Technology (MeitY), Government of India, <em>Digital Personal Data Protection (DPDP) Act, 2023</em>.</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+
+    <!-- =================================================================== -->
+    <!-- VIEW: ALA 5 — CLOUD PERFORMANCE OPTIMIZATION & AUTO-SCALING         -->
+    <!-- =================================================================== -->
+    <article id="view-ala5" class="ala-view hidden space-y-6">
+      <!-- Report Title Banner -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 shadow-sm print-shadow-none">
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="px-3 py-1 rounded-lg bg-navy-900 text-white font-mono text-xs font-bold">ALA : 05</span>
+          <span class="px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-semibold">Completed Technical Report</span>
+          <span class="text-xs text-slate-500 font-medium">• Max Marks: 10</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+          Cloud Performance Engineering: Dynamic Auto-Scaling, Load Balancing, Telemetry, and Edge-Fog Integration
+        </h1>
+        <p class="text-sm text-slate-600 mt-2">
+          Technical evaluation of Layer 4/7 traffic distribution, elastic scaling policies, Golden Signals observability, 10× traffic spike simulation, and Edge-Fog compute offloading.
+        </p>
+      </div>
+
+      <!-- 1. Core Optimization Architecture + Inline SVG Diagram -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-4 avoid-break">
+        <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+          1. Core Performance Optimization &amp; Auto-Scaling Architecture
+        </h2>
+        <p class="text-sm text-slate-700 leading-relaxed">
+          High-performance cloud applications decouple edge caching, request routing, stateless compute pools, and data persistence so each layer scales independently under fluctuating workloads. Figure 1 illustrates the end-to-end elastic topology driven by closed-loop telemetry.
+        </p>
+
+        <!-- Custom Inline SVG Architecture Diagram -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
+          <svg viewBox="0 0 820 265" class="w-full h-auto block" role="img" aria-label="Cloud Performance Optimization and Auto-Scaling Reference Architecture">
+            <defs>
+              <marker id="ala5-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155"></path>
+              </marker>
+              <marker id="ala5-arrow-indigo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#4f46e5"></path>
+              </marker>
+            </defs>
+
+            <!-- Global Clients -->
+            <rect x="10" y="75" width="96" height="68" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.6" />
+            <text x="58" y="104" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Global</text>
+            <text x="58" y="121" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Clients</text>
+
+            <!-- Edge / CDN Layer -->
+            <rect x="136" y="75" width="132" height="68" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="1.6" />
+            <text x="202" y="99" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e3a8a">Edge / CDN Layer</text>
+            <text x="202" y="115" text-anchor="middle" font-size="9.5" fill="#1d4ed8">CloudFront / Cloudflare</text>
+            <text x="202" y="130" text-anchor="middle" font-size="9.5" font-weight="600" fill="#334155">(&lt;20 ms RTT)</text>
+
+            <!-- L7 Application Load Balancer -->
+            <rect x="298" y="75" width="136" height="68" rx="8" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.6" />
+            <text x="366" y="99" text-anchor="middle" font-size="11.5" font-weight="700" fill="#312e81">L7 App Load Balancer</text>
+            <text x="366" y="115" text-anchor="middle" font-size="9.5" fill="#3730a3">TLS Offload &amp; Path Route</text>
+            <text x="366" y="130" text-anchor="middle" font-size="9.5" font-weight="600" fill="#334155">Active Health Checks</text>
+
+            <!-- Horizontal Auto-Scaling Group -->
+            <rect x="466" y="18" width="176" height="176" rx="10" fill="#f8fafc" stroke="#4f46e5" stroke-width="1.8" stroke-dasharray="5,3" />
+            <text x="554" y="37" text-anchor="middle" font-size="10.5" font-weight="700" fill="#4f46e5">Horizontal Auto-Scaling Group</text>
+
+            <rect x="484" y="48" width="140" height="34" rx="6" fill="#ffffff" stroke="#334155" stroke-width="1.3" />
+            <text x="554" y="69" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">Compute Node 1</text>
+
+            <rect x="484" y="92" width="140" height="34" rx="6" fill="#ffffff" stroke="#334155" stroke-width="1.3" />
+            <text x="554" y="113" text-anchor="middle" font-size="11" font-weight="600" fill="#0f172a">Compute Node 2</text>
+
+            <rect x="484" y="136" width="140" height="38" rx="6" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.3" />
+            <text x="554" y="154" text-anchor="middle" font-size="10.5" font-weight="700" fill="#312e81">Compute Node N</text>
+            <text x="554" y="167" text-anchor="middle" font-size="9" fill="#4338ca">(Spot / Predictive Burst)</text>
+
+            <!-- In-Memory Cache (Redis) -->
+            <rect x="674" y="34" width="136" height="60" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="1.6" />
+            <text x="742" y="60" text-anchor="middle" font-size="11.5" font-weight="700" fill="#065f46">In-Memory Cache</text>
+            <text x="742" y="77" text-anchor="middle" font-size="10" fill="#047857">Redis Cluster (Sub-ms)</text>
+
+            <!-- Primary DB + Read Replicas -->
+            <rect x="674" y="114" width="136" height="66" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1.6" />
+            <text x="742" y="142" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0f172a">Primary DB +</text>
+            <text x="742" y="159" text-anchor="middle" font-size="10.5" fill="#475569">Read Replicas</text>
+
+            <!-- CloudWatch / Prometheus Telemetry Controller -->
+            <rect x="298" y="212" width="344" height="40" rx="8" fill="#0f1c36" stroke="#0f1c36" stroke-width="1.5" />
+            <text x="470" y="236" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">
+              CloudWatch / Prometheus Telemetry &amp; Scaling Controller
+            </text>
+
+            <!-- Forward Traffic Arrows -->
+            <line x1="106" y1="109" x2="132" y2="109" stroke="#334155" stroke-width="1.6" marker-end="url(#ala5-arrow)" />
+            <line x1="268" y1="109" x2="294" y2="109" stroke="#334155" stroke-width="1.6" marker-end="url(#ala5-arrow)" />
+            <line x1="434" y1="109" x2="480" y2="65" stroke="#334155" stroke-width="1.4" marker-end="url(#ala5-arrow)" />
+            <line x1="434" y1="109" x2="480" y2="109" stroke="#334155" stroke-width="1.4" marker-end="url(#ala5-arrow)" />
+            <line x1="434" y1="109" x2="480" y2="155" stroke="#334155" stroke-width="1.4" marker-end="url(#ala5-arrow)" />
+
+            <!-- Data Tier Arrows -->
+            <line x1="624" y1="76" x2="670" y2="64" stroke="#334155" stroke-width="1.4" marker-end="url(#ala5-arrow)" />
+            <line x1="624" y1="132" x2="670" y2="144" stroke="#334155" stroke-width="1.4" marker-end="url(#ala5-arrow)" />
+
+            <!-- Closed-Loop Telemetry Arrows -->
+            <line x1="580" y1="194" x2="580" y2="208" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#ala5-arrow-indigo)" />
+            <line x1="528" y1="212" x2="528" y2="198" stroke="#4f46e5" stroke-width="1.6" marker-end="url(#ala5-arrow-indigo)" />
+            <line x1="366" y1="143" x2="366" y2="208" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="3,2" marker-end="url(#ala5-arrow-indigo)" />
+          </svg>
+          <p class="text-xs text-center font-semibold text-slate-500 mt-2">
+            Figure 1: Closed-loop cloud performance optimization architecture with Edge CDN offloading, L7 ALB routing, and telemetry-driven horizontal auto-scaling.
+          </p>
+        </div>
+      </section>
+
+      <!-- 2. Load Balancing & Auto-Scaling + 3. Golden Signals -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- 2. Load Balancing & Auto-Scaling -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
+            2. Load Balancing &amp; Auto-Scaling Mechanisms
+          </h2>
+          <ul class="space-y-2.5 text-sm text-slate-700 leading-relaxed">
+            <li>
+              <strong class="text-slate-900">Layer 4 (NLB) vs. Layer 7 (ALB):</strong> L4 Network Load Balancers forward TCP/UDP packets at ultra-low latency without payload inspection, whereas L7 Application Load Balancers terminate TLS and inspect HTTP paths, headers, and cookies for microservice routing.
+            </li>
+            <li>
+              <strong class="text-slate-900">Vertical vs. Horizontal Scaling:</strong> Vertical scaling (Scale-Up) adds vCPU/RAM to a single node (suited for monolithic DBs but bounded by hardware ceilings), while Horizontal scaling (Scale-Out) adds stateless nodes across Availability Zones dynamically.
+            </li>
+            <li>
+              <strong class="text-slate-900">Elastic Scaling Policies:</strong> Combines <em>Target Tracking</em> (holding CPU at 65%), <em>Step Scaling</em> (tiered additions on sharp breaches), and <em>ML-Based Predictive Scaling</em> (pre-warming instances ahead of recurring traffic cycles).
+            </li>
+          </ul>
+        </section>
+
+        <!-- 3. The Four Golden Signals -->
+        <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm print-shadow-none space-y-3 avoid-break">
+          <h2 class="text-lg font-bold text-slate-900 border-b border-slate-200 pb-3">
+            3. Cloud Monitoring Metrics (The Four Golden Signals)
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-indigo-800">1. Latency (Tail Focus)</div>
+              <p class="text-xs text-slate-600 mt-1">Tracks P95 &amp; P99 response times rather than averages that hide tail degradation.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-indigo-800">2. Traffic Volume</div>
+              <p class="text-xs text-slate-600 mt-1">Measures Requests Per Second (RPS) and active concurrent ALB connections.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-indigo-800">3. Error Rates</div>
+              <p class="text-xs text-slate-600 mt-1">Monitors HTTP <code class="font-mono">5xx</code> server errors, gateway timeouts, and failed health probes.</p>
+            </div>
+            <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-indigo-800">4. Resource Saturation</div>
+              <p class="text-xs text-slate-600 mt-1">Tracks CPU utilization, memory pressure, and SQS queue depth backlog.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. Simulated Workload Scenario Evaluation (Visual Chart + Full Table) -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <div>
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+            4. Simulated Workload Scenario Evaluation (500 RPS → 5,000 RPS Flash-Sale Surge)
+          </h2>
+          <p class="text-sm text-slate-700 mt-3 leading-relaxed">
+            <strong>Workload Scenario:</strong> An e-commerce API operating at a steady baseline of <strong>500 RPS</strong> experiences a sudden 10× flash-sale spike to <strong>5,000 RPS</strong> sustained for 2 hours before returning to baseline. Below is the quantitative comparison across three scaling architectures.
+          </p>
+        </div>
+
+        <!-- Visual Comparison Bar Chart (SVG) -->
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/70">
+          <svg viewBox="0 0 760 215" class="w-full h-auto max-h-56 block" role="img" aria-label="P99 Latency and Monthly Compute Cost Comparison Bar Chart">
+            <!-- Left Chart: P99 Tail Latency (ms) -->
+            <text x="185" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">P99 Tail Latency During 10× Surge (ms)</text>
+            <line x1="50" y1="165" x2="335" y2="165" stroke="#64748b" stroke-width="1.3" />
+            <line x1="50" y1="35" x2="50" y2="165" stroke="#64748b" stroke-width="1.3" />
+            <text x="42" y="168" text-anchor="end" font-size="10" fill="#475569">0</text>
+            <text x="42" y="103" text-anchor="end" font-size="10" fill="#475569">200</text>
+            <text x="42" y="42" text-anchor="end" font-size="10" fill="#475569">410</text>
+
+            <!-- Bar 1: Static (85ms) -->
+            <rect x="75" y="138" width="56" height="27" rx="4" fill="#64748b" />
+            <text x="103" y="132" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">85 ms</text>
+            <text x="103" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Static Fixed</text>
+
+            <!-- Bar 2: Reactive (410ms) -->
+            <rect x="165" y="38" width="56" height="127" rx="4" fill="#e11d48" />
+            <text x="193" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="#9f1239">410 ms</text>
+            <text x="193" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Reactive ASG</text>
+
+            <!-- Bar 3: Predictive Hybrid (105ms) -->
+            <rect x="255" y="132" width="56" height="33" rx="4" fill="#4f46e5" />
+            <text x="283" y="126" text-anchor="middle" font-size="10.5" font-weight="700" fill="#312e81">105 ms</text>
+            <text x="283" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Predictive Hybrid</text>
+
+            <!-- Center Divider -->
+            <line x1="380" y1="15" x2="380" y2="195" stroke="#cbd5e1" stroke-width="1.2" />
+
+            <!-- Right Chart: Monthly Compute Cost ($) -->
+            <text x="570" y="20" text-anchor="middle" font-size="12" font-weight="700" fill="#0f172a">Monthly Compute Expenditure (USD)</text>
+            <line x1="435" y1="165" x2="720" y2="165" stroke="#64748b" stroke-width="1.3" />
+            <line x1="435" y1="35" x2="435" y2="165" stroke="#64748b" stroke-width="1.3" />
+            <text x="427" y="168" text-anchor="end" font-size="10" fill="#475569">$0</text>
+            <text x="427" y="103" text-anchor="end" font-size="10" fill="#475569">$750</text>
+            <text x="427" y="42" text-anchor="end" font-size="10" fill="#475569">$1,440</text>
+
+            <!-- Bar 1: Static ($1,440) -->
+            <rect x="460" y="38" width="56" height="127" rx="4" fill="#64748b" />
+            <text x="488" y="32" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0f172a">$1,440</text>
+            <text x="488" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Static Fixed</text>
+
+            <!-- Bar 2: Reactive ($310) -->
+            <rect x="550" y="137" width="56" height="28" rx="4" fill="#0d9488" />
+            <text x="578" y="131" text-anchor="middle" font-size="10.5" font-weight="700" fill="#115e59">$310</text>
+            <text x="578" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Reactive ASG</text>
+
+            <!-- Bar 3: Predictive Hybrid ($245) -->
+            <rect x="640" y="143" width="56" height="22" rx="4" fill="#4f46e5" />
+            <text x="668" y="137" text-anchor="middle" font-size="10.5" font-weight="700" fill="#312e81">$245 (-83%)</text>
+            <text x="668" y="182" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Predictive Hybrid</text>
+
+            <text x="380" y="206" text-anchor="middle" font-size="10" fill="#64748b">
+              Figure 2: Predictive Pre-Warming + 70% Spot Burst reduces monthly cost by ~83% while avoiding reactive cold-start latency spikes.
+            </text>
+          </svg>
+        </div>
+
+        <!-- Quantitative Simulation Data Table -->
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <thead>
+              <tr class="bg-navy-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3 px-3 rounded-tl-lg">Architecture Strategy</th>
+                <th class="py-3 px-3">Provisioned Capacity</th>
+                <th class="py-3 px-3">Avg Lat.</th>
+                <th class="py-3 px-3">P99 Lat.</th>
+                <th class="py-3 px-3">Peak CPU</th>
+                <th class="py-3 px-3">5xx Rate</th>
+                <th class="py-3 px-3 rounded-tr-lg">Monthly Cost</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 border border-slate-200 text-slate-700">
+              <tr class="bg-white">
+                <td class="py-2.5 px-3 font-bold text-slate-900">1. Static Over-Provisioning</td>
+                <td class="py-2.5 px-3 text-xs">Fixed 20 instances (24/7)</td>
+                <td class="py-2.5 px-3 font-mono text-xs">42 ms</td>
+                <td class="py-2.5 px-3 font-mono text-xs">85 ms</td>
+                <td class="py-2.5 px-3 font-mono text-xs">58%</td>
+                <td class="py-2.5 px-3 font-mono text-xs">0.00%</td>
+                <td class="py-2.5 px-3 font-mono font-bold text-slate-900">$1,440 / mo</td>
+              </tr>
+              <tr class="bg-slate-50/70">
+                <td class="py-2.5 px-3 font-bold text-slate-900">2. Reactive Target-Tracking ASG</td>
+                <td class="py-2.5 px-3 text-xs">Min 2 → Max 20 (CPU &gt; 70%)</td>
+                <td class="py-2.5 px-3 font-mono text-xs">68 ms</td>
+                <td class="py-2.5 px-3 font-mono text-xs text-rose-700 font-semibold">410 ms (lag)</td>
+                <td class="py-2.5 px-3 font-mono text-xs">94%</td>
+                <td class="py-2.5 px-3 font-mono text-xs text-rose-700">1.80%</td>
+                <td class="py-2.5 px-3 font-mono font-bold text-slate-900">$310 / mo</td>
+              </tr>
+              <tr class="bg-indigo-50/50">
+                <td class="py-2.5 px-3 font-bold text-indigo-950">3. Predictive + Spot/On-Demand Hybrid</td>
+                <td class="py-2.5 px-3 text-xs">Min 2 On-Demand + Predictive Pre-Warm + 70% Spot Burst</td>
+                <td class="py-2.5 px-3 font-mono text-xs font-semibold text-emerald-700">45 ms</td>
+                <td class="py-2.5 px-3 font-mono text-xs font-semibold text-emerald-700">105 ms</td>
+                <td class="py-2.5 px-3 font-mono text-xs">68%</td>
+                <td class="py-2.5 px-3 font-mono text-xs">0.02%</td>
+                <td class="py-2.5 px-3 font-mono font-bold text-indigo-700">$245 / mo (~83% saved)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 5. Modern Trends: Edge & Fog Computing + 6. References -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 sm:p-7 shadow-sm print-shadow-none space-y-5 avoid-break">
+        <div class="space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 border-b border-slate-200 pb-3">
+            5. Modern Trends: Edge &amp; Fog Computing Integration
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-slate-700 leading-relaxed">
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-1.5">
+                <strong class="text-slate-900 text-base">Edge Computing Tier</strong>
+                <span class="px-2 py-0.5 rounded bg-indigo-100 text-indigo-800 font-mono text-xs font-semibold">10–25 ms RTT</span>
+              </div>
+              <p>
+                Executes JWT authentication, geo-routing, asset caching, and lightweight inference directly on global CDN Points of Presence (<strong>Cloudflare Workers</strong>, <strong>AWS Lambda@Edge</strong>), eliminating cross-continental round trips.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="flex items-center justify-between mb-1.5">
+                <strong class="text-slate-900 text-base">Fog Computing Tier</strong>
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-mono text-xs font-semibold">60–80% BW Saved</span>
+              </div>
+              <p>
+                Introduces intermediate local compute nodes (industrial IoT gateways, <strong>5G Multi-access Edge Computing / MEC</strong>) that filter, aggregate, and pre-process high-frequency sensor streams locally before transmitting summarized payloads to the central cloud.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-200 space-y-2">
+          <h2 class="text-base font-bold text-slate-900 uppercase tracking-wider">6. References</h2>
+          <ul class="list-disc pl-5 space-y-1 text-xs sm:text-sm text-slate-600">
+            <li>Amazon Web Services, <em>AWS Well-Architected Framework: Performance Efficiency Pillar</em>, 2025.</li>
+            <li>Beyer, B., Jones, C., Petoff, J., &amp; Murphy, N. R., <em>Site Reliability Engineering: How Google Runs Production Systems</em>, O’Reilly Media.</li>
+            <li>Shi, W., Cao, J., Zhang, Q., Li, Y., &amp; Xu, L., "Edge Computing: Vision and Challenges," <em>IEEE Internet of Things Journal</em>, Vol. 3, No. 5.</li>
+          </ul>
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- FOOTER (PRINT & SCREEN)                                               -->
+  <!-- ===================================================================== -->
+  <footer class="bg-white border-t border-slate-200 mt-auto py-4 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+      <div>
+        <strong>Gyanmanjari Innovative University (GMIU)</strong> • B.Tech IT (Sem 7, Class G)
+      </div>
+      <div>
+        Manav Bhadreshbhai Joshi (<span class="font-mono">20230905090512</span>) • <span class="font-mono">BETCE17336</span> – Cloud Computing
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- TOAST NOTIFICATION BANNER (NON-BLOCKING FEEDBACK, NO ALERT())         -->
+  <!-- ===================================================================== -->
+  <div id="toast-banner" class="no-print fixed bottom-5 right-5 z-50 hidden transform transition-all duration-200">
+    <div class="bg-navy-900 text-white px-4 py-3 rounded-xl shadow-lg border border-indigo-400/30 flex items-center gap-2.5 text-xs sm:text-sm font-medium">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></span>
+      <span id="toast-message">Action completed</span>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- VANILLA JAVASCRIPT ROUTER & INTERACTIVE HELPERS                       -->
+  <!-- ===================================================================== -->
+  <script>
+    const VALID_VIEWS = ['home', 'ala1', 'ala2', 'ala3', 'ala4', 'ala5'];
+    let toastTimeout = null;
+
+    /**
+     * Displays a clean non-blocking toast notification (replaces alert()).
+     */
+    function showToast(message) {
+      const banner = document.getElementById('toast-banner');
+      const msgEl = document.getElementById('toast-message');
+      if (!banner || !msgEl) return;
+
+      msgEl.textContent = message;
+      banner.classList.remove('hidden');
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        banner.classList.add('hidden');
+      }, 2800);
+    }
+
+    /**
+     * Switches the active view and synchronizes URL hash + quick-nav state.
+     */
+    function navigateTo(viewName, updateHash = true) {
+      const target = VALID_VIEWS.includes(viewName) ? viewName : 'home';
+
+      // Hide all views
+      VALID_VIEWS.forEach((v) => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.add('hidden');
+      });
+
+      // Show selected view
+      const activeEl = document.getElementById(`view-${target}`);
+      if (activeEl) activeEl.classList.remove('hidden');
+
+      // Toggle quick-nav bar visibility
+      const quickNav = document.getElementById('quick-nav-bar');
+      if (quickNav) {
+        if (target === 'home') {
+          quickNav.classList.add('hidden');
+        } else {
+          quickNav.classList.remove('hidden');
+        }
+      }
+
+      // Highlight active quick-nav pill
+      document.querySelectorAll('.quick-pill').forEach((btn) => {
+        const btnTarget = btn.getAttribute('data-nav');
+        if (btnTarget === target) {
+          btn.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-bold border bg-indigo-600 text-white border-indigo-600 shadow-xs transition cursor-pointer';
+        } else {
+          btn.className = 'quick-pill px-3 py-1.5 rounded-lg text-xs font-semibold border bg-white text-slate-700 border-slate-200 hover:bg-slate-100 transition cursor-pointer';
+        }
+      });
+
+      // Update URL hash cleanly
+      if (updateHash && window.location.hash !== `#${target}`) {
+        try {
+          history.pushState(null, '', `#${target}`);
+        } catch (err) {
+          window.location.hash = target;
+        }
+      }
+
+      // Scroll smoothly to top for faculty review
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * Reads current location hash and renders the corresponding view.
+     */
+    function handleHashRoute() {
+      const rawHash = (window.location.hash || '').replace('#', '').toLowerCase().trim();
+      const target = VALID_VIEWS.includes(rawHash) ? rawHash : 'home';
+      navigateTo(target, false);
+    }
+
+    /**
+     * Copies code block text to clipboard using document.execCommand('copy') for iframe compatibility.
+     */
+    function copyCodeBlock(elementId) {
+      const codeEl = document.getElementById(elementId);
+      if (!codeEl) return;
+
+      const text = codeEl.innerText;
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+
+      try {
+        document.execCommand('copy');
+        showToast('Configuration code copied to clipboard');
+      } catch (err) {
+        showToast('Unable to copy automatically — please select and copy manually');
+      } finally {
+        document.body.removeChild(textarea);
+      }
+    }
+
+    /**
+     * Updates the Live Render URL in ALA 1 and saves it to localStorage safely.
+     */
+    function updateAla1Url() {
+      const input = document.getElementById('ala1-url-input');
+      const link = document.getElementById('ala1-live-link');
+      if (!input || !link) return;
+
+      const val = input.value.trim();
+      if (!val) {
+        showToast('Please enter a valid deployment URL first');
+        return;
+      }
+
+      const formatted = /^https?:\/\//i.test(val) ? val : `https://${val}`;
+      link.href = formatted;
+      link.textContent = formatted;
+
+      try {
+        localStorage.setItem('gmiu_ala1_live_url', formatted);
+      } catch (e) {
+        // Ignore storage restrictions in sandboxed environments
+      }
+
+      input.value = '';
+      showToast('ALA 1 live deployment URL updated');
+    }
+
+    /**
+     * Allows attaching local screenshots into ALA 1 & ALA 2 preview slots for instant demo/PDF printing.
+     */
+    function previewScreenshot(inputEl, containerId) {
+      const container = document.getElementById(containerId);
+      if (!inputEl.files || !inputEl.files[0] || !container) return;
+
+      const file = inputEl.files[0];
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        container.innerHTML = `<img src="${e.target.result}" alt="Attached Verification Screenshot" class="w-full h-full object-contain rounded" />`;
+        showToast(`Loaded "${file.name}" into preview slot`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      // Restore saved ALA 1 URL if present
+      try {
+        const savedUrl = localStorage.getItem('gmiu_ala1_live_url');
+        const link = document.getElementById('ala1-live-link');
+        if (savedUrl && link) {
+          link.href = savedUrl;
+          link.textContent = savedUrl;
+        }
+      } catch (e) {}
+
+      handleHashRoute();
+    });
+
+    window.addEventListener('hashchange', handleHashRoute);
+  </script>
+</body>
+</html>
